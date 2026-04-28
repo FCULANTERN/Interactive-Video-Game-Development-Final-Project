@@ -7157,6 +7157,64 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5202732821079344928, guid: cebfacc247a640945a2c30b442202fca, type: 3}
   m_PrefabInstance: {fileID: 1344739337}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1348707586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1348707587}
+  - component: {fileID: 1348707588}
+  m_Layer: 0
+  m_Name: spawn_manger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1348707587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348707586}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.73606, y: 1.73298, z: -4.5059}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1348707588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348707586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed2e214b115ff714bbd617aeadb2da37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieWaveSpawner
+  zombiePrefab: {fileID: 6578268938732472550, guid: 54b95655e775e7d4bbe80a6b4d17bcb1, type: 3}
+  startEnemyCount: 5
+  enemyIncreasePerWave: 2
+  timeBetweenWaves: 5
+  timeBetweenSpawns: 0.5
+  autoStart: 1
+  useSpawnPoints: 1
+  spawnPoints: []
+  areaCenter: {x: 0, y: 0, z: 0}
+  areaSize: {x: 20, y: 0, z: 20}
+  currentWave: 0
+  aliveEnemyCount: 0
+  isSpawningWave: 0
+  isWaitingNextWave: 0
 --- !u!1001 &1367280582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9489,6 +9547,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1966296444}
+    - target: {fileID: -2905033684145524350, guid: 54b95655e775e7d4bbe80a6b4d17bcb1, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1966296444}
     - target: {fileID: 5764999033874731612, guid: 54b95655e775e7d4bbe80a6b4d17bcb1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.8104899
@@ -9772,11 +9834,11 @@ GameObject:
   - component: {fileID: 1966296443}
   - component: {fileID: 1966296442}
   - component: {fileID: 1966296441}
-  - component: {fileID: 1966296440}
   - component: {fileID: 1966296439}
+  - component: {fileID: 1966296445}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9793,29 +9855,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d56892a43274a42a666df86e9785b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
---- !u!114 &1966296440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1966296438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e6f97ae2baa61148834ce414289c6e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Magic_Manager
-  castCooldown: 1
-  castDelayBeforeProjectile: 0.25
-  castKey: 24
-  spawnOffSet: {fileID: 38841696}
-  target: {fileID: 0}
-  FXList_Cast:
-  - {fileID: 6492321217587484205, guid: c64a17ccfe0b53b428ab71c9c314b42f, type: 3}
-  FXList_Projectile:
-  - {fileID: 3522067147260334173, guid: 5ee0cee073951e94a9b20cd5e0207d41, type: 3}
-  FXList_Hit:
-  - {fileID: 7963070265621199737, guid: d8b3feef50c293240b1ef25d86eb2da7, type: 3}
+  attackRange: 1.5
+  attackRadius: 0.75
+  attackDamage: 1
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &1966296441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9906,6 +9951,27 @@ Transform:
   - {fileID: 1399355629}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 88.378, z: 0}
+--- !u!114 &1966296445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966296438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35070bc8b86105f4e81239f185479b53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Magic_Manager
+  castCooldown: 1
+  castKey: 24
+  spawnOffSet: {fileID: 0}
+  target: {fileID: 0}
+  castRotationOffset: {x: 0, y: 0, z: 0}
+  projectileRotationOffset: {x: 0, y: 0, z: 0}
+  FXList_Cast: []
+  FXList_Projectile: []
+  FXList_Hit: []
 --- !u!1001 &1975785796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10644,3 +10710,4 @@ SceneRoots:
   - {fileID: 705342686}
   - {fileID: 1837318885}
   - {fileID: 1136385243}
+  - {fileID: 1348707587}
