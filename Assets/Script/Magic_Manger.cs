@@ -83,7 +83,7 @@ public class Magic_Manager : MonoBehaviour
     {
         if (spawnOffSet == null)
         {
-            Debug.LogWarning("Magic_Manager: spawnOffSet ¨S¦³«ü©w¡C");
+            Debug.LogWarning("Magic_Manager: spawnOffSet ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½wï¿½C");
             return;
         }
 
@@ -94,11 +94,12 @@ public class Magic_Manager : MonoBehaviour
 
         if (HasValidIndex(FXList_Cast, currentFXIndex))
         {
-            Instantiate(
+            GameObject castFX = Instantiate(
                 FXList_Cast[currentFXIndex],
                 spawnOffSet.position,
                 castRotation
             );
+            Destroy(castFX, 3f);
         }
 
         ShootProjectile();
@@ -108,13 +109,13 @@ public class Magic_Manager : MonoBehaviour
     {
         if (spawnOffSet == null)
         {
-            Debug.LogWarning("Magic_Manager: spawnOffSet ¨S¦³«ü©w¡C");
+            Debug.LogWarning("Magic_Manager: spawnOffSet ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½wï¿½C");
             return;
         }
 
         if (!HasValidIndex(FXList_Projectile, currentFXIndex))
         {
-            Debug.LogWarning("Magic_Manager: FXList_Projectile ¨S¦³¹ïÀ³¯Á¤Þªº§ë®gª«¡C");
+            Debug.LogWarning("Magic_Manager: FXList_Projectile ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þªï¿½ï¿½ï¿½gï¿½ï¿½ï¿½C");
             return;
         }
 

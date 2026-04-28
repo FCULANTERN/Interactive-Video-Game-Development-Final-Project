@@ -46,7 +46,8 @@ public class MagicAttacks_Projectile : MonoBehaviour
         // �ͦ��R���S��
         if (FX_Hit != null)
         {
-            Instantiate(FX_Hit, col.transform.position, Quaternion.identity);
+            GameObject hitFX = Instantiate(FX_Hit, col.transform.position, Quaternion.identity);
+            Destroy(hitFX, 3f);
         }
 
         // ����S�ĩM����
