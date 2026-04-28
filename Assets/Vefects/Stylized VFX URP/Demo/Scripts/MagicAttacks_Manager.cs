@@ -102,7 +102,10 @@ public class MagicAttacks_Manager : MonoBehaviour
 
     void CastProjectile()
     {
-        Instantiate(FXList_Cast[currentFX_Element], spawnOffSet.position, Quaternion.identity);
+        Vector3 projectileDir = GetProjectileDirection();
+        Quaternion projectileRot = Quaternion.LookRotation(projectileDir, Vector3.up);
+
+        Instantiate(FXList_Cast[currentFX_Element], spawnOffSet.position, projectileRot);
         delayShootProjectile = 0.7f;
 
         isCasting = true;
@@ -116,9 +119,11 @@ public class MagicAttacks_Manager : MonoBehaviour
         if (delayShootProjectile <= 0)
         {
             GameObject projectileInstTransform;
-            projectileInstTransform = Instantiate(FXList_Projectile[currentFX_Element], spawnOffSet.position, Quaternion.identity);
+            Vector3 projectileDir = GetProjectileDirection();
+            Quaternion projectileRot = Quaternion.LookRotation(projectileDir, Vector3.up);
 
-            Vector3 projectileDir = (target.position - spawnOffSet.position).normalized;
+            projectileInstTransform = Instantiate(FXList_Projectile[currentFX_Element], spawnOffSet.position, projectileRot);
+
             projectileInstTransform.GetComponent<MagicAttacks_Projectile>().Setup(projectileDir);
             delayShootProjectile = 0;
 
@@ -129,6 +134,14 @@ public class MagicAttacks_Manager : MonoBehaviour
             Destroy(projectileInstTransform.gameObject, 4f);
 
         }
+    }
+
+    Vector3 GetProjectileDirection()
+    {
+        if (target != null)
+            return (target.position - spawnOffSet.position).normalized;
+
+        return spawnOffSet.forward;
     }
 
   

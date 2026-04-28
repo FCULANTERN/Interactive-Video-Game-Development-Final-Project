@@ -5,12 +5,15 @@ public class Magic_Manager : MonoBehaviour
 {
     [Header("Cast Settings")]
     public float castCooldown = 1f;
-    public float castDelayBeforeProjectile = 0.25f;
     public Key castKey = Key.J;
 
     [Header("References")]
     public Transform spawnOffSet;
     public Transform target;
+
+    [Header("Rotation Offset")]
+    public Vector3 castRotationOffset;
+    public Vector3 projectileRotationOffset;
 
     [Header("FX Lists")]
     public GameObject[] FXList_Cast;
@@ -18,9 +21,6 @@ public class Magic_Manager : MonoBehaviour
     public GameObject[] FXList_Hit;
 
     private float cooldownTimer = 0f;
-    private float projectileDelayTimer = 0f;
-    private bool isCasting = false;
-
     private int currentFXIndex = 0;
     private int nextFXIndex = 0;
 
@@ -31,11 +31,6 @@ public class Magic_Manager : MonoBehaviour
 
         HandleEffectSwitchInput();
         HandleCastInput();
-
-        if (isCasting)
-        {
-            ShootProjectile();
-        }
     }
 
     void HandleCastInput()
@@ -43,7 +38,7 @@ public class Magic_Manager : MonoBehaviour
         if (Keyboard.current == null)
             return;
 
-        if (Keyboard.current[castKey].wasPressedThisFrame && cooldownTimer <= 0f && !isCasting)
+        if (Keyboard.current[castKey].wasPressedThisFrame && cooldownTimer <= 0f)
         {
             currentFXIndex = nextFXIndex;
             CastProjectile();
@@ -92,51 +87,46 @@ public class Magic_Manager : MonoBehaviour
             return;
         }
 
+        Vector3 projectileDir = GetProjectileDirection();
+        Quaternion baseRotation = Quaternion.LookRotation(projectileDir, Vector3.up);
+
+        Quaternion castRotation = baseRotation * Quaternion.Euler(castRotationOffset);
+
         if (HasValidIndex(FXList_Cast, currentFXIndex))
         {
             Instantiate(
                 FXList_Cast[currentFXIndex],
                 spawnOffSet.position,
-                spawnOffSet.rotation
+                castRotation
             );
         }
 
-        projectileDelayTimer = castDelayBeforeProjectile;
-        isCasting = true;
+        ShootProjectile();
     }
 
     void ShootProjectile()
     {
-        projectileDelayTimer -= Time.deltaTime;
-
-        if (projectileDelayTimer > 0f)
-            return;
-
         if (spawnOffSet == null)
         {
             Debug.LogWarning("Magic_Manager: spawnOffSet 沒有指定。");
-            isCasting = false;
             return;
         }
 
         if (!HasValidIndex(FXList_Projectile, currentFXIndex))
         {
             Debug.LogWarning("Magic_Manager: FXList_Projectile 沒有對應索引的投射物。");
-            isCasting = false;
             return;
         }
+
+        Vector3 projectileDir = GetProjectileDirection();
+        Quaternion baseRotation = Quaternion.LookRotation(projectileDir, Vector3.up);
+        Quaternion projectileRotation = baseRotation * Quaternion.Euler(projectileRotationOffset);
 
         GameObject projectile = Instantiate(
             FXList_Projectile[currentFXIndex],
             spawnOffSet.position,
-            spawnOffSet.rotation
+            projectileRotation
         );
-
-        Vector3 projectileDir;
-        if (target != null)
-            projectileDir = (target.position - spawnOffSet.position).normalized;
-        else
-            projectileDir = spawnOffSet.forward;
 
         MagicAttacks_Projectile projectileScript = projectile.GetComponent<MagicAttacks_Projectile>();
         if (projectileScript != null)
@@ -147,18 +137,24 @@ public class Magic_Manager : MonoBehaviour
             {
                 projectileScript.FX_Hit = FXList_Hit[currentFXIndex];
             }
-            else
-            {
-                Debug.LogWarning("Magic_Manager: FXList_Hit 沒有對應索引的命中特效。");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("Magic_Manager: 投射物 prefab 上找不到 MagicAttacks_Projectile。");
         }
 
         Destroy(projectile, 4f);
-        isCasting = false;
+    }
+
+    Vector3 GetProjectileDirection()
+    {
+        Vector3 dir;
+
+        if (target != null)
+            dir = (target.position - spawnOffSet.position).normalized;
+        else
+            dir = spawnOffSet.forward;
+
+        if (dir.sqrMagnitude < 0.0001f)
+            dir = spawnOffSet.forward;
+
+        return dir;
     }
 
     bool HasValidIndex(GameObject[] array, int index)

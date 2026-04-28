@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     [Header("Target")]
-    public Transform player;
+    public Transform target;
 
     [Header("Move")]
     public float moveSpeed = 2.5f;
@@ -15,56 +15,57 @@ public class EnemyAI : MonoBehaviour
 
     private float attackTimer;
 
+    void Start()
+    {
+        FindPlayer();
+        attackTimer = attackInterval;
+    }
+
     void Update()
     {
-        if (player == null) return;
+        if (target == null)
+        {
+            FindPlayer();
+            return;
+        }
 
-        float distance = Vector3.Distance(transform.position, player.position);
+        float distance = Vector3.Distance(transform.position, target.position);
 
         if (distance > stopDistance)
         {
-            MoveToPlayer();
+            Vector3 dir = (target.position - transform.position).normalized;
+            dir.y = 0f;
+
+            transform.position += dir * moveSpeed * Time.deltaTime;
+
+            if (dir != Vector3.zero)
+            {
+                transform.rotation = Quaternion.LookRotation(dir);
+            }
         }
         else
         {
-            AttackPlayer();
-        }
-    }
+            attackTimer -= Time.deltaTime;
 
-    void MoveToPlayer()
-    {
-        Vector3 dir = (player.position - transform.position).normalized;
-        dir.y = 0f;
-
-        transform.position += dir * moveSpeed * Time.deltaTime;
-
-        if (dir != Vector3.zero)
-        {
-            transform.rotation = Quaternion.LookRotation(dir);
-        }
-    }
-
-    void AttackPlayer()
-    {
-        attackTimer -= Time.deltaTime;
-
-        Vector3 lookDir = (player.position - transform.position).normalized;
-        lookDir.y = 0f;
-
-        if (lookDir != Vector3.zero)
-        {
-            transform.rotation = Quaternion.LookRotation(lookDir);
-        }
-
-        if (attackTimer <= 0f)
-        {
-            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
+            if (attackTimer <= 0f)
             {
-                playerHealth.TakeDamage(attackDamage);
+                Attack();
+                attackTimer = attackInterval;
             }
-
-            attackTimer = attackInterval;
         }
+    }
+
+    void FindPlayer()
+    {
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            target = playerObj.transform;
+        }
+    }
+
+    void Attack()
+    {
+        Debug.Log(name + " attacks player for " + attackDamage + " damage.");
     }
 }

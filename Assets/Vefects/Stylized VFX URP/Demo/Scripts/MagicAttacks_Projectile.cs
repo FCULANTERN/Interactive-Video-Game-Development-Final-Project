@@ -32,24 +32,24 @@ public class MagicAttacks_Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        // ¤£¥´¦Û¤v
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Û¤v
         if (col.CompareTag("Player"))
             return;
 
-        // ¦pªG¹ï¤è¦³¦å¶q¸}¥»¡A´N¦©¦å
+        // ï¿½pï¿½Gï¿½ï¿½è¦³ï¿½ï¿½qï¿½}ï¿½ï¿½ï¿½Aï¿½Nï¿½ï¿½ï¿½ï¿½
         Damageable damageable = col.GetComponent<Damageable>();
         if (damageable != null)
         {
             damageable.TakeDamage(damage);
         }
 
-        // ¥Í¦¨©R¤¤¯S®Ä
+        // ï¿½Í¦ï¿½ï¿½Rï¿½ï¿½ï¿½Sï¿½ï¿½
         if (FX_Hit != null)
         {
             Instantiate(FX_Hit, col.transform.position, Quaternion.identity);
         }
 
-        // °±¤î¯S®Ä©M­µ®Ä
+        // ï¿½ï¿½ï¿½ï¿½Sï¿½Ä©Mï¿½ï¿½ï¿½ï¿½
         if (FX_Projectile != null)
             Destroy(FX_Projectile);
 
