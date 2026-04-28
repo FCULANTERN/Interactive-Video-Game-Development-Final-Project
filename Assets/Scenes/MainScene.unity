@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 8f2c8ef98c47442d4b0e1896539bf7f1, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -5578,6 +5578,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9069115365609054727, guid: 60f79905accf3b24fa0114b941f1aac0, type: 3}
   m_PrefabInstance: {fileID: 988279136}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1032631529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1032631530}
+  m_Layer: 0
+  m_Name: slashPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1032631530
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032631529}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1966296444}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1001 &1056159471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9836,6 +9867,7 @@ GameObject:
   - component: {fileID: 1966296441}
   - component: {fileID: 1966296439}
   - component: {fileID: 1966296445}
+  - component: {fileID: 1966296446}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -9949,6 +9981,7 @@ Transform:
   m_Children:
   - {fileID: 38841696}
   - {fileID: 1399355629}
+  - {fileID: 1032631530}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 88.378, z: 0}
 --- !u!114 &1966296445
@@ -9964,14 +9997,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Magic_Manager
   castCooldown: 1
-  castKey: 24
-  spawnOffSet: {fileID: 0}
+  castKey: 19
+  spawnOffSet: {fileID: 38841696}
   target: {fileID: 0}
   castRotationOffset: {x: 0, y: 0, z: 0}
   projectileRotationOffset: {x: 0, y: 0, z: 0}
   FXList_Cast: []
-  FXList_Projectile: []
-  FXList_Hit: []
+  FXList_Projectile:
+  - {fileID: 3522067147260334173, guid: 5ee0cee073951e94a9b20cd5e0207d41, type: 3}
+  FXList_Hit:
+  - {fileID: 7963070265621199737, guid: d8b3feef50c293240b1ef25d86eb2da7, type: 3}
+--- !u!114 &1966296446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966296438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0165ebdf52dcb11408a19395947b67bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SlashCircleCaster
+  slashCirclePrefab: {fileID: 3848372677232997033, guid: d6783ff9a7210214889117f82ced12de, type: 3}
+  spawnPoint: {fileID: 1032631530}
+  castKey: 31
+  cooldown: 0.5
+  destroyAfter: 3
+  rotationOffset: {x: 90, y: 0, z: 0}
 --- !u!1001 &1975785796
 PrefabInstance:
   m_ObjectHideFlags: 0
