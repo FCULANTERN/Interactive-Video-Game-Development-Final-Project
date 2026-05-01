@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &16222603 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6578268938732472550, guid: 54b95655e775e7d4bbe80a6b4d17bcb1, type: 3}
+  m_PrefabInstance: {fileID: 1837318885}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &23871872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -804,6 +809,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4661435515762813124, guid: e289bf5debb17f6459818c207d781953, type: 3}
   m_PrefabInstance: {fileID: 57611534}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &58702515
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7226583673155636401, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
+      propertyPath: m_Name
+      value: Hit_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226583673155636402, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -24.35342
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226583673155636402, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.46754
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226583673155636402, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.67463
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226583673155636402, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226583673155636402, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226583673155636402, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226583673155636402, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226583673155636402, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226583673155636402, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226583673155636402, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226583673155636403, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
+      propertyPath: stopAction
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
 --- !u!1001 &68123662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2838,6 +2904,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8903058273634951509, guid: f1fc5bb90ac285e4486771552d63bcb8, type: 3}
   m_PrefabInstance: {fileID: 427580877}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &444754603 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7226583673155636401, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
+  m_PrefabInstance: {fileID: 58702515}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &454187471
 PrefabInstance:
@@ -7232,7 +7303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2e214b115ff714bbd617aeadb2da37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieWaveSpawner
-  zombiePrefab: {fileID: 6578268938732472550, guid: 54b95655e775e7d4bbe80a6b4d17bcb1, type: 3}
+  zombiePrefab: {fileID: 16222603}
   startEnemyCount: 5
   enemyIncreasePerWave: 2
   timeBetweenWaves: 5
@@ -9626,6 +9697,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soda can 1 red dirt
       objectReference: {fileID: 0}
+    - target: {fileID: 6805488826633815333, guid: 54b95655e775e7d4bbe80a6b4d17bcb1, type: 3}
+      propertyPath: groundDelay
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6805488826633815333, guid: 54b95655e775e7d4bbe80a6b4d17bcb1, type: 3}
+      propertyPath: knockbackForce
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6805488826633815333, guid: 54b95655e775e7d4bbe80a6b4d17bcb1, type: 3}
+      propertyPath: hitParticlePrefab
+      value: 
+      objectReference: {fileID: 444754603}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9893,6 +9976,7 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 4294967295
+  idleAnimation: Idle
 --- !u!114 &1966296441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10764,3 +10848,4 @@ SceneRoots:
   - {fileID: 1837318885}
   - {fileID: 1136385243}
   - {fileID: 1348707587}
+  - {fileID: 58702515}
