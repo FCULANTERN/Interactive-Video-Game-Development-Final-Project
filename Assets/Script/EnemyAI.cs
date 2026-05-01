@@ -17,6 +17,7 @@ public class EnemyAI : MonoBehaviour
 
     private Rigidbody rb;
     private float attackTimer;
+    private float stunTimer;
 
     void Start()
     {
@@ -25,8 +26,19 @@ public class EnemyAI : MonoBehaviour
         attackTimer = attackInterval;
     }
 
+    public void Stun(float duration)
+    {
+        stunTimer = duration;
+    }
+
     void FixedUpdate()
     {
+        if (stunTimer > 0f)
+        {
+            stunTimer -= Time.fixedDeltaTime;
+            return;
+        }
+
         if (target == null)
         {
             FindPlayer();
