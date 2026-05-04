@@ -195,7 +195,7 @@ MonoBehaviour:
   maxHealth: 3
   knockbackForce: 3
   stunDuration: 0.2
-  hitParticlePrefab: {fileID: 0}
+  hitParticlePrefab: {fileID: 7226583673155636401, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
   tipDuration: 0.5
   groundDelay: 10
   fadeDuration: 0.8

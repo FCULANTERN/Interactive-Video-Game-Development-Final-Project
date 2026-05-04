@@ -40,6 +40,14 @@ public class EnemyAI : MonoBehaviour
         if (playerHealth != null && playerHealth.IsDead)
             return;
 
+        // 安全檢查：如果自身的 Damageable 已死亡，立即停用
+        Damageable self = GetComponent<Damageable>();
+        if (self != null && self.isDead)
+        {
+            enabled = false;
+            return;
+        }
+
         if (stunTimer > 0f)
         {
             stunTimer -= Time.fixedDeltaTime;

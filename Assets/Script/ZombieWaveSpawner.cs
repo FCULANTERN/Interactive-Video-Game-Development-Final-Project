@@ -16,6 +16,7 @@ public class ZombieWaveSpawner : MonoBehaviour
     [Header("Spawn Area")]
     public bool useSpawnPoints = true;
     public Transform[] spawnPoints;
+    public float minSpawnDistanceFromPlayer = 5f;
     public Vector3 areaCenter = Vector3.zero;
     public Vector3 areaSize = new Vector3(20f, 0f, 20f);
 
@@ -108,7 +109,7 @@ public class ZombieWaveSpawner : MonoBehaviour
     {
         if (zombiePrefab == null)
         {
-            Debug.LogWarning("ZombieWaveSpawner: zombiePrefab �S�����w�C");
+            Debug.LogWarning("ZombieWaveSpawner: zombiePrefab �S�����w�C");
             return;
         }
 
@@ -120,10 +121,32 @@ public class ZombieWaveSpawner : MonoBehaviour
 
     Vector3 GetSpawnPosition()
     {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Vector3 playerPos = player != null ? player.transform.position : Vector3.zero;
+
         if (useSpawnPoints && spawnPoints != null && spawnPoints.Length > 0)
         {
-            int randomIndex = Random.Range(0, spawnPoints.Length);
-            return spawnPoints[randomIndex].position;
+            // 從所有足夠遠的生成點中隨機選一個
+            List<Transform> validPoints = new List<Transform>();
+            foreach (var sp in spawnPoints)
+            {
+                if (sp != null && Vector3.Distance(sp.position, playerPos) >= minSpawnDistanceFromPlayer)
+                    validPoints.Add(sp);
+            }
+
+            if (validPoints.Count > 0)
+                return validPoints[Random.Range(0, validPoints.Count)].position;
+
+            // 如果所有點都太近，選最遠的
+            Transform farthest = spawnPoints[0];
+            float maxDist = 0f;
+            foreach (var sp in spawnPoints)
+            {
+                if (sp == null) continue;
+                float d = Vector3.Distance(sp.position, playerPos);
+                if (d > maxDist) { maxDist = d; farthest = sp; }
+            }
+            return farthest.position;
         }
 
         Vector3 randomPos = areaCenter;

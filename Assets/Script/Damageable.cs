@@ -18,7 +18,7 @@ public class Damageable : MonoBehaviour
     public float fadeDuration = 0.8f;
 
     private int currentHealth;
-    private bool isDead;
+    public bool isDead { get; private set; }
     private Rigidbody rb;
     private Renderer[] renderers;
 
