@@ -71,6 +71,11 @@ void Die()
     {
         if (isDead) return;
         isDead = true;
+
+        // 擊殺敵人獲得分數
+        if (GetComponent<EnemyAI>() != null && ScoreManager.Instance != null)
+            ScoreManager.Instance.AddScore(10);
+
         StartCoroutine(DeathSequence());
     }
 

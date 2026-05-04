@@ -6,6 +6,7 @@ public class Magic_Manager : MonoBehaviour
     [Header("Cast Settings")]
     public float castCooldown = 1f;
     public Key castKey = Key.J;
+    public float manaCost = 10f;
 
     [Header("References")]
     public Transform spawnOffSet;
@@ -40,9 +41,20 @@ public class Magic_Manager : MonoBehaviour
 
         if (Keyboard.current[castKey].wasPressedThisFrame && cooldownTimer <= 0f)
         {
+            // 檢查魔力是否足夠
+            if (HealthSystem.Instance != null && HealthSystem.Instance.manaPoint < manaCost)
+            {
+                Debug.Log("魔力不足，無法施法！");
+                return;
+            }
+
             currentFXIndex = nextFXIndex;
             CastProjectile();
             cooldownTimer = castCooldown;
+
+            // 消耗魔力
+            if (HealthSystem.Instance != null)
+                HealthSystem.Instance.UseMana(manaCost);
         }
     }
 

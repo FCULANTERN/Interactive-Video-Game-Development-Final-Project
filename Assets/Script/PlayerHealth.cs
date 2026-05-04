@@ -6,17 +6,33 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 10;
     private int currentHealth;
 
+    [Header("Game Over")]
+    public GameObject gameOverCanvas;
+
     [SerializeField] private SceneLoader sceneLoader;
 
     void Start()
     {
         currentHealth = maxHealth;
+        // åŒæ­¥æœ€å¤§è¡€é‡åˆ° UI ç³»çµ±
+        if (HealthSystem.Instance != null)
+        {
+            HealthSystem.Instance.maxHitPoint = maxHealth;
+            HealthSystem.Instance.hitPoint = maxHealth;
+            HealthSystem.Instance.HealDamage(0); // ä½¿ç”¨HealDamage(0)ä¾†å¼·åˆ¶æ›´æ–°ä¸€æ¬¡UI
+        }
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        Debug.Log("ª±®a¨ü¨ì¶Ë®`¡A³Ñ¾l¦å¶q: " + currentHealth);
+        Debug.Log("player health: " + currentHealth);
+
+        // é€šçŸ¥ UI ç³»çµ±æ‰£è¡€
+        if (HealthSystem.Instance != null)
+        {
+            HealthSystem.Instance.TakeDamage(damage);
+        }
 
         if (currentHealth <= 0)
         {
@@ -26,9 +42,24 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("ª±®a¦º¤`");
-        // ¥ıÂ²³æÃö³¬ª±®a¡A¤§«á¥i§ï¦¨¼½©ñ¦º¤`°Êµe
+        Debug.Log("player died");
+        // ç¢ºä¿ UI è¡€é‡ä¹Ÿæ­¸é›¶
+        if (HealthSystem.Instance != null)
+        {
+            HealthSystem.Instance.TakeDamage(HealthSystem.Instance.hitPoint);
+        }
+
+        // åœç”¨ç©å®¶ä¸¦é¡¯ç¤º GameOver ç•«é¢
         gameObject.SetActive(false);
-        sceneLoader.LoadScene("HomeScene");
+
+        if (gameOverCanvas != null)
+        {
+            gameOverCanvas.SetActive(true);
+        }
+        else
+        {
+            // è‹¥æ²’æœ‰è¨­å®š GameOver Canvasï¼Œå‰‡é€€å›åŸæœ¬çš„è·³å ´æ™¯é‚è¼¯
+            sceneLoader.LoadScene("HomeScene");
+        }
     }
 }
