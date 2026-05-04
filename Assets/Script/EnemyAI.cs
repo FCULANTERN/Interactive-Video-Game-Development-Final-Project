@@ -20,12 +20,14 @@ public class EnemyAI : MonoBehaviour
     private float attackTimer;
     private float stunTimer;
     private PlayerHealth playerHealth;
+    private EnemyMouthAnimator mouthAnimator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         FindPlayer();
         attackTimer = attackInterval;
+        mouthAnimator = GetComponentInChildren<EnemyMouthAnimator>();
     }
 
     public void Stun(float duration)
@@ -99,6 +101,10 @@ public class EnemyAI : MonoBehaviour
         {
             playerHealth.TakeDamage(attackDamage);
         }
+
+        // 播放嘴巴攻擊動畫
+        if (mouthAnimator != null)
+            mouthAnimator.PlayAttackAnimation();
 
         Debug.Log(name + " attacks player for " + attackDamage + " damage.");
     }
