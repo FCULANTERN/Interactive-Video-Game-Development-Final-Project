@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyAI : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class EnemyAI : MonoBehaviour
     private Rigidbody rb;
     private float attackTimer;
     private float stunTimer;
+    private PlayerHealth playerHealth;
 
     void Start()
     {
@@ -84,11 +86,17 @@ public class EnemyAI : MonoBehaviour
         if (playerObj != null)
         {
             target = playerObj.transform;
+            playerHealth = playerObj.GetComponent<PlayerHealth>();
         }
     }
 
     void Attack()
     {
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage(attackDamage);
+        }
+
         Debug.Log(name + " attacks player for " + attackDamage + " damage.");
     }
 }

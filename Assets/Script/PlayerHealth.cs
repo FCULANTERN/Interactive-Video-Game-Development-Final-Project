@@ -6,6 +6,8 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 10;
     private int currentHealth;
 
+    [SerializeField] private SceneLoader sceneLoader;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -27,5 +29,6 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("玩家死亡");
         // 先簡單關閉玩家，之後可改成播放死亡動畫
         gameObject.SetActive(false);
+        sceneLoader.LoadScene("HomeScene");
     }
 }
