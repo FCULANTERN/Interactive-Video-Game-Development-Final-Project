@@ -6758,7 +6758,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8019504324070957506, guid: 6a99c52f547279f4c951871ed52b7fe9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1395356949}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2448102039815224480, guid: 6a99c52f547279f4c951871ed52b7fe9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1992162821}
   m_SourcePrefab: {fileID: 100100000, guid: 6a99c52f547279f4c951871ed52b7fe9, type: 3}
 --- !u!1001 &1199017615
 PrefabInstance:
@@ -7688,7 +7691,7 @@ GameObject:
   - component: {fileID: 1348707587}
   - component: {fileID: 1348707588}
   m_Layer: 0
-  m_Name: spawn_manger
+  m_Name: spawn_manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8864,6 +8867,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4680757731159730826, guid: 0fde05fa0f3321942a21896ff4f0856f, type: 3}
   m_PrefabInstance: {fileID: 1518431092}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1544070838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1544070840}
+  - component: {fileID: 1544070839}
+  m_Layer: 0
+  m_Name: scoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1544070839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544070838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74fbb7b4829a6ab45b9db14e30838175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
+--- !u!4 &1544070840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544070838}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 653.5, y: 306.66846, z: 0.37174}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1554723168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10910,6 +10957,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2448102039815224480, guid: 6a99c52f547279f4c951871ed52b7fe9, type: 3}
   m_PrefabInstance: {fileID: 1198441196}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1992162821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992162816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fc539f2153ada4fb4424db63efabda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameOverUI
+  scoreText: {fileID: 1395356950}
 --- !u!1001 &1993187761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11514,3 +11574,4 @@ SceneRoots:
   - {fileID: 99524135}
   - {fileID: 1198441196}
   - {fileID: 1989287296}
+  - {fileID: 1544070840}

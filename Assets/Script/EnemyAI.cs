@@ -35,6 +35,9 @@ public class EnemyAI : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (playerHealth != null && playerHealth.IsDead)
+            return;
+
         if (stunTimer > 0f)
         {
             stunTimer -= Time.fixedDeltaTime;

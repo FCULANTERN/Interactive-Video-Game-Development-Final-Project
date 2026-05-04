@@ -5,6 +5,8 @@ public class PlayerHealth : MonoBehaviour
     [Header("Player Health")]
     public int maxHealth = 10;
     private int currentHealth;
+    private bool isDead = false;
+    public bool IsDead => isDead;
 
     [Header("Game Over")]
     public GameObject gameOverCanvas;
@@ -25,6 +27,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (isDead) return;
+
         currentHealth -= damage;
         Debug.Log("player health: " + currentHealth);
 
@@ -42,11 +46,14 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
+        if (isDead) return;
+        isDead = true;
         Debug.Log("player died");
-        // 確保 UI 血量也歸零
+        // 確保 UI 血量也歸零，並停止自動回血/回魔
         if (HealthSystem.Instance != null)
         {
             HealthSystem.Instance.TakeDamage(HealthSystem.Instance.hitPoint);
+            HealthSystem.Instance.Regenerate = false;
         }
 
         // 停用玩家並顯示 GameOver 畫面
