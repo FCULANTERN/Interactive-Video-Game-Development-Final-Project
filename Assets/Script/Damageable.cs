@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using System.Collections;
 
 public class Damageable : MonoBehaviour
@@ -26,6 +27,10 @@ public class Damageable : MonoBehaviour
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody>();
         renderers = GetComponentsInChildren<Renderer>();
+
+        // 確保 Decal 在遠距離也可見
+        var decal = GetComponentInChildren<DecalProjector>();
+        if (decal != null) decal.drawDistance = 1000f;
     }
 
     public void TakeDamage(int damage, Vector3 hitDirection)
@@ -71,6 +76,10 @@ void Die()
     {
         if (isDead) return;
         isDead = true;
+
+        // 立即關掉嘴巴 Decal，避免倒地後投影到地板
+        var decal = GetComponentInChildren<DecalProjector>();
+        if (decal != null) decal.enabled = false;
 
         // 立即停用 EnemyAI，防止死亡後還能攻擊
         EnemyAI ai = GetComponent<EnemyAI>();

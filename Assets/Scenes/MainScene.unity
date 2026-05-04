@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &16222603 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6578268938732472550, guid: 54b95655e775e7d4bbe80a6b4d17bcb1, type: 3}
-  m_PrefabInstance: {fileID: 1837318885}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &23871872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7772,7 +7767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2e214b115ff714bbd617aeadb2da37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieWaveSpawner
-  zombiePrefab: {fileID: 16222603}
+  zombiePrefab: {fileID: 6578268938732472550, guid: 54b95655e775e7d4bbe80a6b4d17bcb1, type: 3}
   startEnemyCount: 5
   enemyIncreasePerWave: 2
   timeBetweenWaves: 4
@@ -10364,6 +10359,10 @@ PrefabInstance:
       propertyPath: hitParticlePrefab
       value: 
       objectReference: {fileID: 444754603}
+    - target: {fileID: 6860236070606822301, guid: 54b95655e775e7d4bbe80a6b4d17bcb1, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 31d0dcc6f2dd4e4408d18036a2c93862, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
