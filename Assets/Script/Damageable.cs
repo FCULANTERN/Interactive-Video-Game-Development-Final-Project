@@ -72,8 +72,12 @@ void Die()
         if (isDead) return;
         isDead = true;
 
+        // 立即停用 EnemyAI，防止死亡後還能攻擊
+        EnemyAI ai = GetComponent<EnemyAI>();
+        if (ai != null) ai.enabled = false;
+
         // 擊殺敵人獲得分數
-        if (GetComponent<EnemyAI>() != null && ScoreManager.Instance != null)
+        if (ai != null && ScoreManager.Instance != null)
             ScoreManager.Instance.AddScore(10);
 
         StartCoroutine(DeathSequence());

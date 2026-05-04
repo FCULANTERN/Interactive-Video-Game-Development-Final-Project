@@ -28,6 +28,6 @@ public class GameOverUI : MonoBehaviour
     // 綁定到 Quit 按鈕
     public void OnQuitButton()
     {
-        Application.Quit();
+        SceneManager.LoadScene("HomeScene");
     }
 }

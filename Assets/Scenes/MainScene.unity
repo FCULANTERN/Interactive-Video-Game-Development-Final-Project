@@ -5449,6 +5449,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 99524135}
     m_Modifications:
+    - target: {fileID: 5510382440998354362, guid: f7162b84863baba4bafb2589864e6802, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 190
+      objectReference: {fileID: 0}
+    - target: {fileID: 5510382440998354362, guid: f7162b84863baba4bafb2589864e6802, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 5510382441318609241, guid: f7162b84863baba4bafb2589864e6802, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -190
+      objectReference: {fileID: 0}
+    - target: {fileID: 5510382441318609241, guid: f7162b84863baba4bafb2589864e6802, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 110
+      objectReference: {fileID: 0}
     - target: {fileID: 5510382441765092197, guid: f7162b84863baba4bafb2589864e6802, type: 3}
       propertyPath: currentManaGlobe
       value: 
@@ -6473,7 +6489,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1136385240}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &1136385242
 Camera:
   m_ObjectHideFlags: 0
@@ -6627,6 +6643,18 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 1100
       objectReference: {fileID: 0}
+    - target: {fileID: 1875507288080395326, guid: 6a99c52f547279f4c951871ed52b7fe9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1992162821}
+    - target: {fileID: 1875507288080395326, guid: 6a99c52f547279f4c951871ed52b7fe9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnQuitButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875507288080395326, guid: 6a99c52f547279f4c951871ed52b7fe9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameOverUI, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2342744505150996099, guid: 6a99c52f547279f4c951871ed52b7fe9, type: 3}
       propertyPath: m_SizeDelta.x
       value: 220
@@ -6650,6 +6678,22 @@ PrefabInstance:
     - target: {fileID: 6263671408504032915, guid: 6a99c52f547279f4c951871ed52b7fe9, type: 3}
       propertyPath: m_text
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402788049740684712, guid: 6a99c52f547279f4c951871ed52b7fe9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402788049740684712, guid: 6a99c52f547279f4c951871ed52b7fe9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1992162821}
+    - target: {fileID: 6402788049740684712, guid: 6a99c52f547279f4c951871ed52b7fe9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnPlayButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402788049740684712, guid: 6a99c52f547279f4c951871ed52b7fe9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameOverUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7073844518179023577, guid: 6a99c52f547279f4c951871ed52b7fe9, type: 3}
       propertyPath: m_SizeDelta.x
@@ -6750,6 +6794,10 @@ PrefabInstance:
     - target: {fileID: 8513523927904065480, guid: 6a99c52f547279f4c951871ed52b7fe9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984024508909140568, guid: 6a99c52f547279f4c951871ed52b7fe9, type: 3}
+      propertyPath: m_text
+      value: home
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -7727,7 +7775,7 @@ MonoBehaviour:
   zombiePrefab: {fileID: 16222603}
   startEnemyCount: 5
   enemyIncreasePerWave: 2
-  timeBetweenWaves: 5
+  timeBetweenWaves: 4
   timeBetweenSpawns: 0.5
   autoStart: 1
   useSpawnPoints: 1
