@@ -36,15 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        GroundCheck();
-        MovePlayer();
-        RotateToMouse();
-    }
-
-    void GroundCheck()
-    {
-        if (groundCheck != null)
-            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        isGrounded = controller.isGrounded;
 
         if (isGrounded && velocity.y < 0)
             velocity.y = -2f;
@@ -57,11 +49,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
-    }
 
-    void MovePlayer()
-    {
         float x = 0f;
         float z = 0f;
 
@@ -73,17 +61,13 @@ public class PlayerMovement : MonoBehaviour
             if (Keyboard.current.dKey.isPressed) x += 1f;
         }
 
-        Vector3 move = new Vector3(x, 0f, z).normalized;
+        Vector3 horizontalMove = new Vector3(x, 0f, z).normalized;
+        animator.SetFloat("Speed", horizontalMove == Vector3.zero ? 0f : 1f);
 
-        if (move == Vector3.zero) {
-            animator.SetFloat("Speed", 0f);
-        } else {
-            animator.SetFloat("Speed", 1f);
-        }
+        Vector3 finalMove = horizontalMove * moveSpeed + new Vector3(0f, velocity.y, 0f);
+        controller.Move(finalMove * Time.deltaTime);
 
-        Debug.Log(move);
-
-        controller.Move(move * moveSpeed * Time.deltaTime);
+        RotateToMouse();
     }
 
     void RotateToMouse()
