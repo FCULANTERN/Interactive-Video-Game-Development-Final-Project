@@ -23,9 +23,12 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity;
     private bool isGrounded;
 
+    private Animator animator;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>();
 
         if (mainCamera == null)
             mainCamera = Camera.main;
@@ -71,6 +74,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Vector3 move = new Vector3(x, 0f, z).normalized;
+
+        if (move == Vector3.zero) {
+            animator.SetFloat("Speed", 0f);
+        } else {
+            animator.SetFloat("Speed", 1f);
+        }
+
+        Debug.Log(move);
+
         controller.Move(move * moveSpeed * Time.deltaTime);
     }
 
