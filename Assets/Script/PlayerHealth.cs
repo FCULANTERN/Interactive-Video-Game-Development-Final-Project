@@ -13,6 +13,12 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] private SceneLoader sceneLoader;
 
+    void Update()
+    {
+        if (!isDead && HealthSystem.Instance != null)
+            currentHealth = (int)HealthSystem.Instance.hitPoint;
+    }
+
     void Start()
     {
         currentHealth = maxHealth;
