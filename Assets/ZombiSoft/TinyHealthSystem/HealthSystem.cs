@@ -36,6 +36,10 @@ public class HealthSystem : MonoBehaviour
 	private float timeleft = 0.0f;	// Left time for current interval
 	public float regenUpdateInterval = 1f;
 
+	// 升級系統加成（由 PlayerUpgradable 設定）
+	[HideInInspector] public float hpRegenBonus = 0f;
+	[HideInInspector] public float manaRegenBonus = 0f;
+
 	public bool GodMode;
 
 	//==============================================================
@@ -81,8 +85,8 @@ public class HealthSystem : MonoBehaviour
 			}
 			else
 			{
-				HealDamage(regen);
-				RestoreMana(regen);				
+				HealDamage(regen + hpRegenBonus);
+				RestoreMana(regen + manaRegenBonus);
 			}
 
 			UpdateGraphics();

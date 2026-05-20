@@ -11,6 +11,7 @@ public class SlashCircleCaster : MonoBehaviour
     public Key castKey = Key.O;
     public float cooldown = 0.5f;
     public float destroyAfter = 3f;
+    public float manaCost = 20f;
 
     [Header("Rotation Offset")]
     public Vector3 rotationOffset = new Vector3(90f, 0f, 0f);
@@ -27,7 +28,17 @@ public class SlashCircleCaster : MonoBehaviour
 
         if (Keyboard.current[castKey].wasPressedThisFrame && cooldownTimer <= 0f)
         {
+            if (HealthSystem.Instance != null && HealthSystem.Instance.manaPoint < manaCost)
+            {
+                Debug.Log("é­”åŠ›ä¸è¶³ï¼Œç„¡æ³•ä½¿ç”¨ Slashï¼");
+                return;
+            }
+
             CastSlashCircle();
+
+            if (HealthSystem.Instance != null)
+                HealthSystem.Instance.UseMana(manaCost);
+
             cooldownTimer = cooldown;
         }
     }
@@ -36,7 +47,7 @@ public class SlashCircleCaster : MonoBehaviour
     {
         if (slashCirclePrefab == null)
         {
-            Debug.LogWarning("SlashCircleCaster: slashCirclePrefab ¨S¦³«ü©w¡C");
+            Debug.LogWarning("SlashCircleCaster: slashCirclePrefab ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½wï¿½C");
             return;
         }
 

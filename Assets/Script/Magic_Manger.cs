@@ -16,6 +16,9 @@ public class Magic_Manager : MonoBehaviour
     public Vector3 castRotationOffset;
     public Vector3 projectileRotationOffset;
 
+    [Header("Skill Upgrade Type")]
+    public UpgradeType skillUpgradeType = UpgradeType.SkillProjectile;
+
     [Header("FX Lists")]
     public GameObject[] FXList_Cast;
     public GameObject[] FXList_Projectile;
@@ -144,6 +147,8 @@ public class Magic_Manager : MonoBehaviour
         MagicAttacks_Projectile projectileScript = projectile.GetComponent<MagicAttacks_Projectile>();
         if (projectileScript != null)
         {
+            projectileScript.skillUpgradeType = skillUpgradeType;
+            projectileScript.useUpgradeSystem = true;
             projectileScript.Setup(projectileDir);
 
             if (HasValidIndex(FXList_Hit, currentFXIndex))

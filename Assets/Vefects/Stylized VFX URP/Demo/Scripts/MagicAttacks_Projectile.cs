@@ -7,6 +7,10 @@ public class MagicAttacks_Projectile : MonoBehaviour
     public GameObject FX_Hit;
     public int damage = 1;
 
+    // 從哪個升級類型取得傷害（由 Magic_Manager 設定）
+    [HideInInspector] public UpgradeType skillUpgradeType = UpgradeType.SkillProjectile;
+    [HideInInspector] public bool useUpgradeSystem = false;
+
     VisualEffect FX_Projectile;
     VisualEffect FX_ProjectileTail;
     AudioSource SFX_Projectile;
@@ -16,6 +20,10 @@ public class MagicAttacks_Projectile : MonoBehaviour
         FX_Projectile = gameObject.transform.GetChild(0).GetComponent<VisualEffect>();
         FX_ProjectileTail = gameObject.transform.GetChild(1).GetComponent<VisualEffect>();
         SFX_Projectile = gameObject.GetComponent<AudioSource>();
+
+        // 從升級系統取得傷害
+        if (useUpgradeSystem && UpgradeSystem.Instance != null)
+            damage = UpgradeSystem.Instance.GetSkillDamage(skillUpgradeType);
     }
 
     public void Setup(Vector3 projectileDir)

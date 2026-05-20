@@ -89,6 +89,11 @@ void Die()
         if (ai != null && ScoreManager.Instance != null)
             ScoreManager.Instance.AddScore(10);
 
+        // 掉落金幣
+        GoldDrop goldDrop = GetComponent<GoldDrop>();
+        if (goldDrop != null)
+            goldDrop.DropGold();
+
         StartCoroutine(DeathSequence());
     }
 
