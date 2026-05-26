@@ -77619,6 +77619,7 @@ GameObject:
   - component: {fileID: 1966296445}
   - component: {fileID: 1966296446}
   - component: {fileID: 1966296447}
+  - component: {fileID: 1966296448}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -77775,7 +77776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0165ebdf52dcb11408a19395947b67bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlashCircleCaster
-  slashCirclePrefab: {fileID: 3848372677232997033, guid: d6783ff9a7210214889117f82ced12de, type: 3}
+  slashCirclePrefab: {fileID: 2466968695602405059, guid: a42079863dd980e4b9b1d3013b008118, type: 3}
   spawnPoint: {fileID: 1032631530}
   castKey: 31
   cooldown: 0.5
@@ -77797,6 +77798,18 @@ MonoBehaviour:
   maxHealth: 10
   gameOverCanvas: {fileID: 0}
   sceneLoader: {fileID: 191431277}
+--- !u!114 &1966296448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966296438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9bee4f66ee4d1d439110d5d9e1ba123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerUpgradable
 --- !u!4 &1966637842 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3899520030807063256, guid: 299e7a1cb6456cf4fa6079cf5978df9b, type: 3}
