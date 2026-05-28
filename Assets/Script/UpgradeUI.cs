@@ -8,6 +8,13 @@ public class UpgradeUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI goldText;
     [SerializeField] private TextMeshProUGUI instructionText;
 
+    private void Awake()
+    {
+        if (upgradePanel != null)
+            upgradePanel.SetActive(false);
+    }
+
+
     void Start()
     {
         if (UpgradeSystem.Instance == null)
@@ -23,8 +30,6 @@ public class UpgradeUI : MonoBehaviour
         if (instructionText != null)
             instructionText.text = "Press 'U' to open upgrades";
 
-        if (upgradePanel != null)
-            upgradePanel.SetActive(false);
     }
 
     void Update()

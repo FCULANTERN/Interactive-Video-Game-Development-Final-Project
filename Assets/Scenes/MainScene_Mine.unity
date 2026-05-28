@@ -448,7 +448,6 @@ GameObject:
   m_Component:
   - component: {fileID: 12166164}
   - component: {fileID: 12166163}
-  - component: {fileID: 12166162}
   m_Layer: 0
   m_Name: UpgradeSystem
   m_TagString: Untagged
@@ -456,21 +455,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &12166162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 12166161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcae11d0c79bca54dad5cb0a1707509e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UpgradeUI
-  upgradePanel: {fileID: 1787914969}
-  goldText: {fileID: 0}
-  instructionText: {fileID: 0}
 --- !u!114 &12166163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,8 +477,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 12166161}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 147.33333, y: 364.16666, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 147.33331, y: 364.16666, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5237,7 +5221,7 @@ Transform:
   m_GameObject: {fileID: 120721000}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -46.6, y: 1, z: 0}
+  m_LocalPosition: {x: -30.4, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -60030,6 +60014,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5202732821079344928, guid: cebfacc247a640945a2c30b442202fca, type: 3}
   m_PrefabInstance: {fileID: 2132577561}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1462522002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1462522004}
+  - component: {fileID: 1462522003}
+  m_Layer: 0
+  m_Name: UpgradeUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1462522003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462522002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcae11d0c79bca54dad5cb0a1707509e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeUI
+  upgradePanel: {fileID: 1787914969}
+  goldText: {fileID: 0}
+  instructionText: {fileID: 0}
+--- !u!4 &1462522004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462522002}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 147.33331, y: 364.16666, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1465262887 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5440707293445741943, guid: 494f6d43e170e9145bc7865d243ee00b, type: 3}
@@ -70360,7 +70391,7 @@ Transform:
   m_GameObject: {fileID: 1725726133}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.3, y: 1, z: 27.3}
+  m_LocalPosition: {x: 35.1, y: 1, z: 24.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -80586,6 +80617,7 @@ GameObject:
   - component: {fileID: 1966296445}
   - component: {fileID: 1966296446}
   - component: {fileID: 1966296447}
+  - component: {fileID: 1966296448}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -80743,7 +80775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0165ebdf52dcb11408a19395947b67bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlashCircleCaster
-  slashCirclePrefab: {fileID: 3848372677232997033, guid: d6783ff9a7210214889117f82ced12de, type: 3}
+  slashCirclePrefab: {fileID: 2466968695602405059, guid: a42079863dd980e4b9b1d3013b008118, type: 3}
   spawnPoint: {fileID: 1032631530}
   spellCooldownUI: {fileID: 1836481614}
   castKey: 31
@@ -80766,6 +80798,18 @@ MonoBehaviour:
   maxHealth: 10
   gameOverCanvas: {fileID: 0}
   sceneLoader: {fileID: 191431277}
+--- !u!114 &1966296448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966296438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9bee4f66ee4d1d439110d5d9e1ba123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerUpgradable
 --- !u!4 &1966637842 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3899520030807063256, guid: 299e7a1cb6456cf4fa6079cf5978df9b, type: 3}
