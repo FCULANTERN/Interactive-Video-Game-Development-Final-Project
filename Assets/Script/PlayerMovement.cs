@@ -74,9 +74,11 @@ public class PlayerMovement : MonoBehaviour
 
         Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 1000f, mouseAimMask))
+        Plane aimPlane = new Plane(Vector3.up, transform.position);
+
+        if (aimPlane.Raycast(ray, out float distance))
         {
-            Vector3 lookPoint = hit.point;
+            Vector3 lookPoint = ray.GetPoint(distance);
             Vector3 direction = lookPoint - transform.position;
             direction.y = 0f;
 
