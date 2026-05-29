@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ZombieWaveSpawner : MonoBehaviour
 {
+    public static ZombieWaveSpawner Instance { get; private set; }
+    public event Action<int> OnWaveChanged;
     [Header("Enemy")]
     public GameObject zombiePrefab;
 
@@ -32,6 +35,11 @@ public class ZombieWaveSpawner : MonoBehaviour
     private int enemiesToSpawnThisWave = 0;
     private int enemiesSpawnedThisWave = 0;
     private bool waveStarted = false;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -102,6 +110,7 @@ public class ZombieWaveSpawner : MonoBehaviour
         waveStarted = true;
         spawnTimer = 0f;
 
+        OnWaveChanged?.Invoke(currentWave);
         Debug.Log("Wave " + currentWave + " started. Enemies: " + enemiesToSpawnThisWave);
     }
 
@@ -135,7 +144,7 @@ public class ZombieWaveSpawner : MonoBehaviour
             }
 
             if (validPoints.Count > 0)
-                return validPoints[Random.Range(0, validPoints.Count)].position;
+                return validPoints[UnityEngine.Random.Range(0, validPoints.Count)].position;
 
             // 如果所有點都太近，選最遠的
             Transform farthest = spawnPoints[0];
@@ -150,9 +159,9 @@ public class ZombieWaveSpawner : MonoBehaviour
         }
 
         Vector3 randomPos = areaCenter;
-        randomPos.x += Random.Range(-areaSize.x * 0.5f, areaSize.x * 0.5f);
-        randomPos.y += Random.Range(-areaSize.y * 0.5f, areaSize.y * 0.5f);
-        randomPos.z += Random.Range(-areaSize.z * 0.5f, areaSize.z * 0.5f);
+        randomPos.x += UnityEngine.Random.Range(-areaSize.x * 0.5f, areaSize.x * 0.5f);
+        randomPos.y += UnityEngine.Random.Range(-areaSize.y * 0.5f, areaSize.y * 0.5f);
+        randomPos.z += UnityEngine.Random.Range(-areaSize.z * 0.5f, areaSize.z * 0.5f);
         return randomPos;
     }
 
