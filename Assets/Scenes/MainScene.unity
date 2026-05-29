@@ -41541,7 +41541,7 @@ GameObject:
   - component: {fileID: 1015636246}
   - component: {fileID: 1015636248}
   m_Layer: 5
-  m_Name: GoldText (1)
+  m_Name: EnemiesLeftText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56820,7 +56820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ZombieWaveSpawner
   enemyEntries:
   - prefab: {fileID: 6578268938732472550, guid: 54b95655e775e7d4bbe80a6b4d17bcb1, type: 3}
-    minWave: 1
+    minWave: 0
   - prefab: {fileID: 1832559998417680542, guid: d269ed7cfce04304aba1396c0ef81bf3, type: 3}
     minWave: 2
   startEnemyCount: 5
@@ -56834,7 +56834,7 @@ MonoBehaviour:
   maxSpeedMultiplier: 2
   bossWaveInterval: 5
   bossCount: 1
-  bossPrefab: {fileID: 0}
+  bossPrefab: {fileID: 6578268938732472550, guid: 54b95655e775e7d4bbe80a6b4d17bcb1, type: 3}
   bossHealthMultiplier: 8
   bossDamageMultiplier: 3
   bossSizeMultiplier: 2
@@ -62982,7 +62982,7 @@ GameObject:
   - component: {fileID: 1515044996}
   - component: {fileID: 1515044995}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: WaveAnnounceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63023,8 +63023,8 @@ MonoBehaviour:
   bannerDuration: 2
   scaleInDuration: 0.35
   overshoot: 1.7
-  waveStartFormat: Wave {0}
-  bossWaveFormat: Boss Wave {0}!
+  waveStartFormat: "Wave {0}\n\u6CE2\u6B21 {0}"
+  bossWaveFormat: "Boss Wave {0}!\n\u9B54\u738B\u6CE2\u6B21 {0}!"
 --- !u!114 &1515044996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63045,10 +63045,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Wave Announcement
+  m_text: "Wave 1\n\u6CE2\u6B21 1"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7f8d7bb9a1859c24d9f82fa82fe7ebff, type: 2}
+  m_sharedMaterial: {fileID: 1326273821252669343, guid: 7f8d7bb9a1859c24d9f82fa82fe7ebff, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -63072,15 +63072,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -63111,7 +63111,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -198.69312, w: 0}
+  m_margin: {x: 0, y: 0, z: -74.56665, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -63764,7 +63764,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16, y: -162}
+  m_AnchoredPosition: {x: 0, y: -162}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1528845696
