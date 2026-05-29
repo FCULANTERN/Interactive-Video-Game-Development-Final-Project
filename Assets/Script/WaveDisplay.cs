@@ -3,6 +3,8 @@ using TMPro;
 
 public class WaveDisplay : MonoBehaviour
 {
+    public string format = "Wave: {0}";
+
     private TextMeshProUGUI waveText;
 
     void Start()
@@ -19,7 +21,7 @@ public class WaveDisplay : MonoBehaviour
     void UpdateDisplay(int wave)
     {
         if (waveText != null)
-            waveText.text = $"Wave: {wave}";
+            waveText.text = string.Format(format, wave);
     }
 
     void OnDestroy()

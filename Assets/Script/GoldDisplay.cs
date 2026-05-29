@@ -3,6 +3,8 @@ using TMPro;
 
 public class GoldDisplay : MonoBehaviour
 {
+    public string format = "Gold: {0}";
+
     private TextMeshProUGUI goldText;
 
     void Start()
@@ -19,7 +21,7 @@ public class GoldDisplay : MonoBehaviour
     void UpdateDisplay(int gold)
     {
         if (goldText != null)
-            goldText.text = $"Gold: {gold}";
+            goldText.text = string.Format(format, gold);
     }
 
     void OnDestroy()
