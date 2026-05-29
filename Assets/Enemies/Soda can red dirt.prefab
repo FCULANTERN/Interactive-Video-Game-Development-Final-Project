@@ -218,7 +218,7 @@ MonoBehaviour:
   moveSpeed: 2.5
   stopDistance: 1.5
   rotateSpeed: 8
-  attackDamage: 1
+  attackDamage: 2
   attackInterval: 1
 --- !u!136 &829279000438145699
 CapsuleCollider:

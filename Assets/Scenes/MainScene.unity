@@ -56288,7 +56288,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2e214b115ff714bbd617aeadb2da37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieWaveSpawner
-  zombiePrefab: {fileID: 6578268938732472550, guid: 54b95655e775e7d4bbe80a6b4d17bcb1, type: 3}
+  enemyEntries:
+  - prefab: {fileID: 6578268938732472550, guid: 54b95655e775e7d4bbe80a6b4d17bcb1, type: 3}
+    minWave: 1
+  - prefab: {fileID: 1832559998417680542, guid: d269ed7cfce04304aba1396c0ef81bf3, type: 3}
+    minWave: 2
   startEnemyCount: 5
   enemyIncreasePerWave: 2
   timeBetweenWaves: 1

@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: c1612f03eb4c6254c802c8957a26011a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c1612f03eb4c6254c802c8957a26011a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c1612f03eb4c6254c802c8957a26011a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c1612f03eb4c6254c802c8957a26011a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -141,10 +153,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExplodingEnemyAI
   moveSpeed: 2
   rotateSpeed: 8
-  fuseDistance: 2.5
+  fuseDistance: 4
   fuseTime: 1
-  explosionRadius: 5
-  explosionDamage: 3
+  explosionRadius: 8
+  explosionDamage: 10
+  explosionVFX: {fileID: 7963070265621199737, guid: d8b3feef50c293240b1ef25d86eb2da7, type: 3}
+  vfxScale: 3
   scoreReward: 15
   goldReward: 15
 --- !u!114 &818859221083072460

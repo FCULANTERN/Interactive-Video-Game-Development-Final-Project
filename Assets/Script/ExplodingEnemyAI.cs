@@ -23,6 +23,12 @@ public class ExplodingEnemyAI : MonoBehaviour
     [Tooltip("爆炸對玩家的傷害")]
     public int explosionDamage = 3;
 
+    [Header("Explosion VFX")]
+    [Tooltip("爆炸特效 Prefab，例如 VFX_Fire_Magic_Hit")]
+    public GameObject explosionVFX;
+    [Tooltip("特效播放縮放倍率")]
+    public float vfxScale = 3f;
+
     [Header("Death Reward")]
     public int scoreReward = 15;
     public int goldReward = 15;
@@ -133,6 +139,16 @@ public class ExplodingEnemyAI : MonoBehaviour
         {
             if (playerHealth != null)
                 playerHealth.TakeDamage(explosionDamage);
+        }
+
+        // 播放爆炸特效
+        if (explosionVFX != null)
+        {
+            GameObject fx = Instantiate(explosionVFX, transform.position, Quaternion.identity);
+            fx.transform.localScale = Vector3.one * vfxScale;
+            ParticleSystem ps = fx.GetComponent<ParticleSystem>();
+            float duration = (ps != null) ? ps.main.duration + ps.main.startLifetime.constantMax : 2f;
+            Destroy(fx, duration);
         }
 
         // 給分
