@@ -5,7 +5,7 @@ public class Magic_Manager : MonoBehaviour
 {
     [Header("Cast Settings")]
     public int castCooldown = 1;
-    public Key castKey = Key.J;
+    public InputActionReference castAction;
     public float manaCost = 10f;
 
     [Header("References")]
@@ -43,12 +43,15 @@ public class Magic_Manager : MonoBehaviour
         if (Keyboard.current == null)
             return;
 
-        if (Keyboard.current[castKey].wasPressedThisFrame && cooldownTimer <= 0f)
+        if (castAction.action.triggered && cooldownTimer <= 0f)
         {
-            // 檢查魔力是否足夠
-            if (HealthSystem.Instance != null && HealthSystem.Instance.manaPoint < manaCost)
+
+            if (HealthSystem.Instance == null)
+                return;
+
+            if (!HealthSystem.Instance.UseMana(manaCost))
             {
-                Debug.Log("魔力不足，無法施法！");
+                Debug.Log("Mana insuffisant");
                 return;
             }
 
@@ -56,10 +59,6 @@ public class Magic_Manager : MonoBehaviour
             CastProjectile();
             cooldownTimer = castCooldown;
             spellCooldownUI?.StartCooldown(castCooldown);
-
-            // 消耗魔力
-            if (HealthSystem.Instance != null)
-                HealthSystem.Instance.UseMana(manaCost);
         }
     }
 
@@ -180,5 +179,15 @@ public class Magic_Manager : MonoBehaviour
     bool HasValidIndex(GameObject[] array, int index)
     {
         return array != null && index >= 0 && index < array.Length && array[index] != null;
+    }
+
+    void OnEnable()
+    {
+        castAction.action.Enable();
+    }
+
+    void OnDisable()
+    {
+        castAction.action.Disable();
     }
 }
