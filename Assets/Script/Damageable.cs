@@ -94,6 +94,11 @@ void Die()
         if (goldDrop != null)
             goldDrop.DropGold();
 
+        // 掉落補給球（生命 / 魔力）
+        OrbDrop orbDrop = GetComponent<OrbDrop>();
+        if (orbDrop != null)
+            orbDrop.TryDropOrb();
+
         StartCoroutine(DeathSequence());
     }
 

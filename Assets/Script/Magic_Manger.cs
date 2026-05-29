@@ -183,11 +183,13 @@ public class Magic_Manager : MonoBehaviour
 
     void OnEnable()
     {
-        castAction.action.Enable();
+        if (castAction != null && castAction.action != null)
+            castAction.action.Enable();
     }
 
     void OnDisable()
     {
-        castAction.action.Disable();
+        if (castAction != null && castAction.action != null)
+            castAction.action.Disable();
     }
 }

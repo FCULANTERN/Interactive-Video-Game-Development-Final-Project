@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b152080a18c835e46a45256e6a896c3a, type: 2}
     - target: {fileID: 919132149155446097, guid: c1612f03eb4c6254c802c8957a26011a, type: 3}
       propertyPath: m_Name
-      value: Trash bin smooth 2 Machinery
+      value: ExplodEnemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -84,6 +84,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c1612f03eb4c6254c802c8957a26011a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 818859221083072460}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c1612f03eb4c6254c802c8957a26011a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4707682679025344372}
   m_SourcePrefab: {fileID: 100100000, guid: c1612f03eb4c6254c802c8957a26011a, type: 3}
 --- !u!1 &1832559998417680542 stripped
 GameObject:
@@ -180,3 +183,20 @@ MonoBehaviour:
   tipDuration: 0.5
   groundDelay: 10
   fadeDuration: 0.8
+--- !u!114 &4707682679025344372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832559998417680542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1490bd5e33894b1c81e81917ddc9525d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OrbDrop
+  healthOrbPrefab: {fileID: 1000000000000000001, guid: c9ae9285e33e48359557ce382cdf6406, type: 3}
+  manaOrbPrefab: {fileID: 2000000000000000001, guid: 597a435098a940b789f3eddf1626c4b3, type: 3}
+  healthDropChance: 0.1
+  manaDropChance: 0.1
+  spawnHeight: 0.5
