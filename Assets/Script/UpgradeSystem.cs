@@ -62,6 +62,25 @@ public class UpgradeSystem : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         InitializeUpgrades();
+        LoadProgress();
+    }
+
+    private const string GoldKey = "save_gold";
+    private const string LevelKeyPrefix = "save_upgrade_level_";
+
+    private void LoadProgress()
+    {
+        currentGold = PlayerPrefs.GetInt(GoldKey, currentGold);
+        foreach (var u in upgrades)
+            u.currentLevel = PlayerPrefs.GetInt(LevelKeyPrefix + (int)u.type, u.currentLevel);
+    }
+
+    public void SaveProgress()
+    {
+        PlayerPrefs.SetInt(GoldKey, currentGold);
+        foreach (var u in upgrades)
+            PlayerPrefs.SetInt(LevelKeyPrefix + (int)u.type, u.currentLevel);
+        PlayerPrefs.Save();
     }
 
     void InitializeUpgrades()
@@ -164,6 +183,8 @@ public class UpgradeSystem : MonoBehaviour
         currentGold -= cost;
         upgrade.currentLevel++;
 
+        SaveProgress();
+
         OnGoldChanged?.Invoke(currentGold);
         OnUpgradeChanged?.Invoke(type);
 
@@ -207,6 +228,7 @@ public class UpgradeSystem : MonoBehaviour
     public void AddGold(int amount)
     {
         currentGold += amount;
+        SaveProgress();
         OnGoldChanged?.Invoke(currentGold);
     }
 }

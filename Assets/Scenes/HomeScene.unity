@@ -1608,8 +1608,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e61e3071579fc544a2c57d591c32a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioSettings
-  masterSlider: {fileID: 522084221}
-  masterText: {fileID: 1524491304}
+  channel: 0
+  slider: {fileID: 522084221}
+  volumeText: {fileID: 1524491304}
 --- !u!1 &262201427
 GameObject:
   m_ObjectHideFlags: 0
@@ -9704,8 +9705,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e61e3071579fc544a2c57d591c32a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioSettings
-  masterSlider: {fileID: 578601482}
-  masterText: {fileID: 1944667683}
+  channel: 2
+  slider: {fileID: 578601482}
+  volumeText: {fileID: 1944667683}
 --- !u!1 &919293125
 GameObject:
   m_ObjectHideFlags: 0
@@ -13451,8 +13453,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e61e3071579fc544a2c57d591c32a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioSettings
-  masterSlider: {fileID: 1050192310}
-  masterText: {fileID: 537162591}
+  channel: 1
+  slider: {fileID: 1050192310}
+  volumeText: {fileID: 537162591}
 --- !u!1 &1421404307
 GameObject:
   m_ObjectHideFlags: 0
