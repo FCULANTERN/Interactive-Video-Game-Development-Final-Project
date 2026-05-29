@@ -6,10 +6,11 @@ public class SlashCircleCaster : MonoBehaviour
     [Header("References")]
     public GameObject slashCirclePrefab;
     public Transform spawnPoint;
+    public SpellCooldown spellCooldownUI;
 
     [Header("Cast Settings")]
     public Key castKey = Key.O;
-    public float cooldown = 0.5f;
+    public int cooldown = 1;
     public float destroyAfter = 3f;
     public float manaCost = 20f;
 
@@ -35,6 +36,7 @@ public class SlashCircleCaster : MonoBehaviour
             }
 
             CastSlashCircle();
+            spellCooldownUI?.StartCooldown(cooldown);
 
             if (HealthSystem.Instance != null)
                 HealthSystem.Instance.UseMana(manaCost);

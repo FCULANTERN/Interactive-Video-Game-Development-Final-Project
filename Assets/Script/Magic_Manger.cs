@@ -4,13 +4,14 @@ using UnityEngine.InputSystem;
 public class Magic_Manager : MonoBehaviour
 {
     [Header("Cast Settings")]
-    public float castCooldown = 1f;
+    public int castCooldown = 1;
     public Key castKey = Key.J;
     public float manaCost = 10f;
 
     [Header("References")]
     public Transform spawnOffSet;
     public Transform target;
+    public SpellCooldown spellCooldownUI;
 
     [Header("Rotation Offset")]
     public Vector3 castRotationOffset;
@@ -54,6 +55,7 @@ public class Magic_Manager : MonoBehaviour
             currentFXIndex = nextFXIndex;
             CastProjectile();
             cooldownTimer = castCooldown;
+            spellCooldownUI?.StartCooldown(castCooldown);
 
             // 消耗魔力
             if (HealthSystem.Instance != null)

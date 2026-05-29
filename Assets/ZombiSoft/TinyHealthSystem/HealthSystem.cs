@@ -1,4 +1,4 @@
-﻿//==============================================================
+//==============================================================
 // HealthSystem
 // HealthSystem.Instance.TakeDamage (float Damage);
 // HealthSystem.Instance.HealDamage (float Heal);
@@ -16,14 +16,12 @@ public class HealthSystem : MonoBehaviour
 {
 	public static HealthSystem Instance;
 
-	public Image currentHealthBar;
-	public Image currentHealthGlobe;
+	public Slider healthSlider;
 	public Text healthText;
 	public float hitPoint = 100f;
 	public float maxHitPoint = 100f;
 
-	public Image currentManaBar;
-	public Image currentManaGlobe;
+	public Slider manaSlider;
 	public Text manaText;
 	public float manaPoint = 100f;
 	public float maxManaPoint = 100f;
@@ -49,14 +47,14 @@ public class HealthSystem : MonoBehaviour
 	{
 		Instance = this;
 	}
-	
+
 	//==============================================================
-	// Awake
+	// Start
 	//==============================================================
   	void Start()
 	{
 		UpdateGraphics();
-		timeleft = regenUpdateInterval; 
+		timeleft = regenUpdateInterval;
 	}
 
 	//==============================================================
@@ -101,15 +99,10 @@ public class HealthSystem : MonoBehaviour
 	private void UpdateHealthBar()
 	{
 		float ratio = hitPoint / maxHitPoint;
-		currentHealthBar.rectTransform.localPosition = new Vector3(currentHealthBar.rectTransform.rect.width * ratio - currentHealthBar.rectTransform.rect.width, 0, 0);
-		healthText.text = hitPoint.ToString ("0") + "/" + maxHitPoint.ToString ("0");
-	}
-
-	private void UpdateHealthGlobe()
-	{
-		float ratio = hitPoint / maxHitPoint;
-		currentHealthGlobe.rectTransform.localPosition = new Vector3(0, currentHealthGlobe.rectTransform.rect.height * ratio - currentHealthGlobe.rectTransform.rect.height, 0);
-		healthText.text = hitPoint.ToString("0") + "/" + maxHitPoint.ToString("0");
+		if (healthSlider != null)
+			healthSlider.value = ratio;
+		if (healthText != null)
+			healthText.text = hitPoint.ToString("0") + "/" + maxHitPoint.ToString("0");
 	}
 
 	public void TakeDamage(float Damage)
@@ -126,11 +119,12 @@ public class HealthSystem : MonoBehaviour
 	public void HealDamage(float Heal)
 	{
 		hitPoint += Heal;
-		if (hitPoint > maxHitPoint) 
+		if (hitPoint > maxHitPoint)
 			hitPoint = maxHitPoint;
 
 		UpdateGraphics();
 	}
+
 	public void SetMaxHealth(float max)
 	{
 		maxHitPoint += (int)(maxHitPoint * max / 100);
@@ -144,15 +138,10 @@ public class HealthSystem : MonoBehaviour
 	private void UpdateManaBar()
 	{
 		float ratio = manaPoint / maxManaPoint;
-		currentManaBar.rectTransform.localPosition = new Vector3(currentManaBar.rectTransform.rect.width * ratio - currentManaBar.rectTransform.rect.width, 0, 0);
-		manaText.text = manaPoint.ToString ("0") + "/" + maxManaPoint.ToString ("0");
-	}
-
-	private void UpdateManaGlobe()
-	{
-		float ratio = manaPoint / maxManaPoint;
-		currentManaGlobe.rectTransform.localPosition = new Vector3(0, currentManaGlobe.rectTransform.rect.height * ratio - currentManaGlobe.rectTransform.rect.height, 0);
-		manaText.text = manaPoint.ToString("0") + "/" + maxManaPoint.ToString("0");
+		if (manaSlider != null)
+			manaSlider.value = ratio;
+		if (manaText != null)
+			manaText.text = manaPoint.ToString("0") + "/" + maxManaPoint.ToString("0");
 	}
 
 	public void UseMana(float Mana)
@@ -167,31 +156,26 @@ public class HealthSystem : MonoBehaviour
 	public void RestoreMana(float Mana)
 	{
 		manaPoint += Mana;
-		if (manaPoint > maxManaPoint) 
+		if (manaPoint > maxManaPoint)
 			manaPoint = maxManaPoint;
 
 		UpdateGraphics();
 	}
+
 	public void SetMaxMana(float max)
 	{
 		maxManaPoint += (int)(maxManaPoint * max / 100);
-		
+
 		UpdateGraphics();
 	}
 
 	//==============================================================
-	// Update all Bars & Globes UI graphics
+	// Update all Bars UI graphics
 	//==============================================================
 	private void UpdateGraphics()
 	{
-		if (currentHealthBar != null)
-			UpdateHealthBar();
-		if (currentHealthGlobe != null)
-			UpdateHealthGlobe();
-		if (currentManaBar != null)
-			UpdateManaBar();
-		if (currentManaGlobe != null)
-			UpdateManaGlobe();
+		UpdateHealthBar();
+		UpdateManaBar();
 	}
 
 	//==============================================================
