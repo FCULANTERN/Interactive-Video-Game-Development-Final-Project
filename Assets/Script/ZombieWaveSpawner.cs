@@ -1,10 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class EnemySpawnEntry
+{
+    public GameObject prefab;
+    [Tooltip("從第幾波開始生成此敵人（1 = 第一波起）")]
+    public int minWave = 1;
+}
+
 public class ZombieWaveSpawner : MonoBehaviour
 {
     [Header("Enemy")]
-    public GameObject zombiePrefab;
+    public EnemySpawnEntry[] enemyEntries;
 
     [Header("Wave Settings")]
     public int startEnemyCount = 5;
@@ -107,14 +115,25 @@ public class ZombieWaveSpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        if (zombiePrefab == null)
+        List<GameObject> eligible = new List<GameObject>();
+        if (enemyEntries != null)
         {
-            Debug.LogWarning("ZombieWaveSpawner: zombiePrefab �S�����w�C");
+            foreach (var entry in enemyEntries)
+            {
+                if (entry.prefab != null && currentWave >= entry.minWave)
+                    eligible.Add(entry.prefab);
+            }
+        }
+
+        if (eligible.Count == 0)
+        {
+            Debug.LogWarning("ZombieWaveSpawner: 目前波數沒有可用的敵人 prefab，請確認 enemyEntries 設定。");
             return;
         }
 
+        GameObject prefabToSpawn = eligible[Random.Range(0, eligible.Count)];
         Vector3 spawnPosition = GetSpawnPosition();
-        GameObject enemy = Instantiate(zombiePrefab, spawnPosition, Quaternion.identity);
+        GameObject enemy = Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
         aliveEnemies.Add(enemy);
         aliveEnemyCount = aliveEnemies.Count;
     }

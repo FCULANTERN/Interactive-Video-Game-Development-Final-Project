@@ -63,6 +63,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c1612f03eb4c6254c802c8957a26011a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5304990194535212987}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c1612f03eb4c6254c802c8957a26011a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -501901784160180864}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c1612f03eb4c6254c802c8957a26011a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6609674024960064357}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c1612f03eb4c6254c802c8957a26011a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 818859221083072460}
   m_SourcePrefab: {fileID: 100100000, guid: c1612f03eb4c6254c802c8957a26011a, type: 3}
 --- !u!1 &1832559998417680542 stripped
 GameObject:
@@ -91,3 +100,69 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 9006109063009315100, guid: 252f82e744152644e8b039e2987911ee, type: 3}
+--- !u!54 &-501901784160180864
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832559998417680542}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
+--- !u!114 &6609674024960064357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832559998417680542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4de1ade0a98c46443904c5019e2fe7dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplodingEnemyAI
+  moveSpeed: 2
+  rotateSpeed: 8
+  fuseDistance: 2.5
+  fuseTime: 1
+  explosionRadius: 5
+  explosionDamage: 3
+  scoreReward: 15
+  goldReward: 15
+--- !u!114 &818859221083072460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832559998417680542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9043b483a456748a896165b469d75e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Damageable
+  maxHealth: 3
+  knockbackForce: 3
+  stunDuration: 0.2
+  hitParticlePrefab: {fileID: 0}
+  tipDuration: 0.5
+  groundDelay: 10
+  fadeDuration: 0.8
