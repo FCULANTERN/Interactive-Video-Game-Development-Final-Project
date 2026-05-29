@@ -72,6 +72,12 @@ public class RebindKey : MonoBehaviour
 
         waitingForKey = false;
 
+        if (actionReference == null || actionReference.action == null)
+        {
+            Debug.LogWarning($"RebindKey on '{name}': Input Action reference is not assigned.", this);
+            return;
+        }
+
         var action = actionReference.action;
 
         action.ApplyBindingOverride(bindingIndex, path);
@@ -82,6 +88,12 @@ public class RebindKey : MonoBehaviour
 
     void UpdateVisual()
     {
+        if (actionReference == null || actionReference.action == null)
+        {
+            Debug.LogWarning($"RebindKey on '{name}': Input Action reference is not assigned.", this);
+            return;
+        }
+
         var action = actionReference.action;
 
         if (action.bindings.Count <= bindingIndex)
