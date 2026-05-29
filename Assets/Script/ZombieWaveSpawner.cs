@@ -140,7 +140,7 @@ public class ZombieWaveSpawner : MonoBehaviour
             return;
         }
 
-        GameObject prefabToSpawn = eligible[Random.Range(0, eligible.Count)];
+        GameObject prefabToSpawn = eligible[UnityEngine.Random.Range(0, eligible.Count)];
         Vector3 spawnPosition = GetSpawnPosition();
         GameObject enemy = Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
         aliveEnemies.Add(enemy);
