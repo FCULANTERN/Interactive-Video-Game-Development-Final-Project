@@ -9,39 +9,30 @@ public class SlashCircleCaster : MonoBehaviour
     public SpellCooldown spellCooldownUI;
 
     [Header("Cast Settings")]
-    public Key castKey = Key.O;
+    public InputActionReference castAction;
     public int cooldown = 1;
     public float destroyAfter = 3f;
     public float manaCost = 20f;
+
 
     [Header("Rotation Offset")]
     public Vector3 rotationOffset = new Vector3(90f, 0f, 0f);
 
     private float cooldownTimer = 0f;
+    private bool isCasting = false;
+
 
     void Update()
     {
         if (cooldownTimer > 0f)
+        {
             cooldownTimer -= Time.deltaTime;
 
-        if (Keyboard.current == null)
-            return;
-
-        if (Keyboard.current[castKey].wasPressedThisFrame && cooldownTimer <= 0f)
-        {
-            if (HealthSystem.Instance != null && HealthSystem.Instance.manaPoint < manaCost)
+            if (cooldownTimer <= 0f)
             {
-                Debug.Log("魔力不足，無法使用 Slash！");
-                return;
+                cooldownTimer = 0f;
+                isCasting = false; // 🔓 libère le verrou quand le cooldown est fini
             }
-
-            CastSlashCircle();
-            spellCooldownUI?.StartCooldown(cooldown);
-
-            if (HealthSystem.Instance != null)
-                HealthSystem.Instance.UseMana(manaCost);
-
-            cooldownTimer = cooldown;
         }
     }
 
@@ -68,5 +59,32 @@ public class SlashCircleCaster : MonoBehaviour
         {
             Destroy(fx, destroyAfter);
         }
+    }
+
+    void OnEnable()
+    {
+        castAction.action.Enable();
+        castAction.action.started += OnCast;
+    }
+
+    void OnDisable()
+    {
+        castAction.action.started -= OnCast;
+        castAction.action.Disable();
+    }
+
+    void OnCast(InputAction.CallbackContext ctx)
+    {
+        if (isCasting) return;
+
+        if (HealthSystem.Instance == null) return;
+
+        if (!HealthSystem.Instance.UseMana(manaCost)) return;
+
+        isCasting = true;
+        cooldownTimer = cooldown;
+
+        CastSlashCircle();
+        spellCooldownUI?.StartCooldown(cooldown);
     }
 }

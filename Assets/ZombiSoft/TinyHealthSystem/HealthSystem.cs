@@ -40,18 +40,23 @@ public class HealthSystem : MonoBehaviour
 
 	public bool GodMode;
 
-	//==============================================================
-	// Awake
-	//==============================================================
-	void Awake()
-	{
-		Instance = this;
-	}
+    //==============================================================
+    // Awake
+    //==============================================================
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
-	//==============================================================
-	// Start
-	//==============================================================
-  	void Start()
+        Instance = this;
+    }
+    //==============================================================
+    // Start
+    //==============================================================
+    void Start()
 	{
 		UpdateGraphics();
 		timeleft = regenUpdateInterval;
@@ -108,10 +113,9 @@ public class HealthSystem : MonoBehaviour
 	public void TakeDamage(float Damage)
 	{
 		hitPoint -= Damage;
-		if (hitPoint < 1)
-			hitPoint = 0;
+        hitPoint = Mathf.Clamp(hitPoint, 0, maxHitPoint);
 
-		UpdateGraphics();
+        UpdateGraphics();
 
 		StartCoroutine(PlayerHurts());
 	}
@@ -144,22 +148,24 @@ public class HealthSystem : MonoBehaviour
 			manaText.text = manaPoint.ToString("0") + "/" + maxManaPoint.ToString("0");
 	}
 
-	public void UseMana(float Mana)
-	{
-		manaPoint -= Mana;
-		if (manaPoint < 1) // Mana is Zero!!
-			manaPoint = 0;
+    public bool UseMana(float mana)
+    {
+        if (manaPoint < mana)
+            return false;
 
-		UpdateGraphics();
-	}
+        manaPoint -= mana;
+        manaPoint = Mathf.Clamp(manaPoint, 0, maxManaPoint);
 
-	public void RestoreMana(float Mana)
+        UpdateGraphics();
+        return true;
+    }
+
+    public void RestoreMana(float Mana)
 	{
 		manaPoint += Mana;
-		if (manaPoint > maxManaPoint)
-			manaPoint = maxManaPoint;
+        manaPoint = Mathf.Clamp(manaPoint, 0, maxManaPoint);
 
-		UpdateGraphics();
+        UpdateGraphics();
 	}
 
 	public void SetMaxMana(float max)

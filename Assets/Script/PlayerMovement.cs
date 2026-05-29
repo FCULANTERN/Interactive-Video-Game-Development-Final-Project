@@ -19,6 +19,10 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask mouseAimMask;
     public float rotateSpeed = 15f;
 
+    [Header("Input Actions")]
+    public InputActionReference moveAction;
+    public InputActionReference jumpAction;
+
     private CharacterController controller;
     private Vector3 velocity;
     private bool isGrounded;
@@ -41,25 +45,18 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && velocity.y < 0)
             velocity.y = -2f;
 
-        if (Keyboard.current != null &&
-            Keyboard.current.spaceKey.wasPressedThisFrame &&
-            isGrounded)
+        if (jumpAction.action.triggered && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
+        Vector2 input = moveAction.action.ReadValue<Vector2>();
+
+        float x = input.x;
+        float z = input.y;
+
         velocity.y += gravity * Time.deltaTime;
 
-        float x = 0f;
-        float z = 0f;
-
-        if (Keyboard.current != null)
-        {
-            if (Keyboard.current.wKey.isPressed) z += 1f;
-            if (Keyboard.current.sKey.isPressed) z -= 1f;
-            if (Keyboard.current.aKey.isPressed) x -= 1f;
-            if (Keyboard.current.dKey.isPressed) x += 1f;
-        }
 
         Vector3 horizontalMove = new Vector3(x, 0f, z).normalized;
         animator.SetFloat("Speed", horizontalMove == Vector3.zero ? 0f : 1f);
@@ -93,5 +90,17 @@ public class PlayerMovement : MonoBehaviour
                 );
             }
         }
+    }
+
+    void OnEnable()
+    {
+        moveAction.action.Enable();
+        jumpAction.action.Enable();
+    }
+
+    void OnDisable()
+    {
+        moveAction.action.Disable();
+        jumpAction.action.Disable();
     }
 }

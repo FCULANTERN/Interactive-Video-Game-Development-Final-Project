@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [Header("Player Health")]
-    public int maxHealth = 10;
-    private int currentHealth;
     private bool isDead = false;
+
     public bool IsDead => isDead;
 
     [Header("Game Over")]
@@ -13,40 +11,16 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] private SceneLoader sceneLoader;
 
-    void Update()
-    {
-        if (!isDead && HealthSystem.Instance != null)
-            currentHealth = (int)HealthSystem.Instance.hitPoint;
-    }
-
-    void Start()
-    {
-        currentHealth = maxHealth;
-        // 同步最大血量到 UI 系統
-        if (HealthSystem.Instance != null)
-        {
-            HealthSystem.Instance.maxHitPoint = maxHealth;
-            HealthSystem.Instance.hitPoint = maxHealth;
-            HealthSystem.Instance.HealDamage(0); // 使用HealDamage(0)來強制更新一次UI
-        }
-    }
-
     public void TakeDamage(int damage)
     {
         if (isDead) return;
 
-        currentHealth -= damage;
-        Debug.Log("player health: " + currentHealth);
-
-        // 通知 UI 系統扣血
         if (HealthSystem.Instance != null)
         {
             HealthSystem.Instance.TakeDamage(damage);
-        }
 
-        if (currentHealth <= 0)
-        {
-            Die();
+            if (HealthSystem.Instance.hitPoint <= 0)
+                Die();
         }
     }
 
@@ -54,25 +28,15 @@ public class PlayerHealth : MonoBehaviour
     {
         if (isDead) return;
         isDead = true;
-        Debug.Log("player died");
-        // 確保 UI 血量也歸零，並停止自動回血/回魔
-        if (HealthSystem.Instance != null)
-        {
-            HealthSystem.Instance.TakeDamage(HealthSystem.Instance.hitPoint);
-            HealthSystem.Instance.Regenerate = false;
-        }
 
-        // 停用玩家並顯示 GameOver 畫面
+        if (HealthSystem.Instance != null)
+            HealthSystem.Instance.Regenerate = false;
+
         gameObject.SetActive(false);
 
         if (gameOverCanvas != null)
-        {
             gameOverCanvas.SetActive(true);
-        }
         else
-        {
-            // 若沒有設定 GameOver Canvas，則退回原本的跳場景邏輯
             sceneLoader.LoadScene("HomeScene");
-        }
     }
 }
