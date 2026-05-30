@@ -148,6 +148,10 @@ public class ZombieWaveSpawner : MonoBehaviour
         spawnTimer = 0f;
 
         OnWaveChanged?.Invoke(currentWave);
+
+        if (AchievementManager.Instance != null)
+            AchievementManager.Instance.OnNewWave(currentWave);
+
         Debug.Log("Wave " + currentWave + " started. Enemies: " + enemiesToSpawnThisWave + (isBossWave ? " (BOSS WAVE)" : ""));
     }
 

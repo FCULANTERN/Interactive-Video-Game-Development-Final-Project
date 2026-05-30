@@ -48,6 +48,10 @@ public class PlayerMovement : MonoBehaviour
         if (jumpAction.action.triggered && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
+            if (AchievementManager.Instance != null)
+                AchievementManager.Instance.RegisterJump();
+
         }
 
         Vector2 input = moveAction.action.ReadValue<Vector2>();

@@ -212,6 +212,9 @@ public class HealthSystem : MonoBehaviour
 		if (PopupText.Instance != null)
 			PopupText.Instance.Popup("You have died!", 1f, 1f);
 
-		yield return null;
+        if (AchievementManager.Instance != null)
+            AchievementManager.Instance.RegisterPlayerDeath();
+
+        yield return null;
 	}
 }
