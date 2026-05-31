@@ -1,7 +1,9 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
-using TMPro;
+using UnityEngine.VFX;
 
 public class AudioSettings : MonoBehaviour
 {
@@ -13,6 +15,9 @@ public class AudioSettings : MonoBehaviour
     [SerializeField] private Slider slider;
     [FormerlySerializedAs("masterText")]
     [SerializeField] private TextMeshProUGUI volumeText;
+
+    [SerializeField] private AudioMixer mixer;
+    [SerializeField] private string exposedParamName;
 
     private string VolumeKey => "save_volume_" + channel;
 
@@ -26,20 +31,25 @@ public class AudioSettings : MonoBehaviour
         ApplyVolume(saved);
         slider.onValueChanged.AddListener(ApplyVolume);
     }
-
     private void ApplyVolume(float value)
     {
         volumeText.text = $"{(int)value} %";
-        Volume01 = value / 100f;
 
-        if (channel == Channel.Master)
-            AudioListener.volume = Volume01;
+        float normalized = value / 100f;
+        float dB = Mathf.Log10(Mathf.Max(normalized, 0.0001f)) * 20f;
+
+        if (mixer != null)
+        {
+            if (channel == Channel.Master)
+                mixer.SetFloat(exposedParamName, dB);
+
+            if (channel == Channel.Music)
+                mixer.SetFloat(exposedParamName, dB);
+
+            if (channel == Channel.SFX)
+                mixer.SetFloat(exposedParamName, dB);
+        }
 
         PlayerPrefs.SetFloat(VolumeKey, value);
-    }
-
-    private void OnDisable()
-    {
-        PlayerPrefs.Save();
     }
 }

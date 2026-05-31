@@ -5,8 +5,6 @@ public class MenuManager : MonoBehaviour
     public GameObject homePanel;
     public GameObject achievementsPanel;
     public GameObject settingsPanel;
-    public GameObject leavesParticle;
-
 
     void Start()
     {
@@ -19,7 +17,6 @@ public class MenuManager : MonoBehaviour
         settingsPanel.SetActive(false);
         achievementsPanel.SetActive(false);
 
-        leavesParticle.SetActive(true);
     }
 
     public void ShowAchievements()
@@ -28,7 +25,6 @@ public class MenuManager : MonoBehaviour
         settingsPanel.SetActive(false);
         achievementsPanel.SetActive(true);
 
-        leavesParticle.SetActive(false);
     }
 
     public void ShowSettings()
@@ -37,6 +33,5 @@ public class MenuManager : MonoBehaviour
         settingsPanel.SetActive(true);
         achievementsPanel.SetActive(false);
 
-        leavesParticle.SetActive(false);
     }
 }
