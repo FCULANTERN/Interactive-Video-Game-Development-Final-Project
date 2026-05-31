@@ -59,6 +59,11 @@ public class ZombieWaveSpawner : MonoBehaviour
     public bool endlessMode = false;
     private bool gameFinished = false;
 
+    [Header("Start Screen")]
+    public GameObject startPanel;
+    public bool waitForStart = true;
+    private bool gameStarted = false;
+
     public float WaveCountdown => waveTimer;
 
     private readonly List<GameObject> aliveEnemies = new List<GameObject>();
@@ -76,15 +81,25 @@ public class ZombieWaveSpawner : MonoBehaviour
 
     void Start()
     {
-        if (autoStart)
+        Time.timeScale = 0f;
+
+        if (waitForStart)
         {
-            StartNextWave();
+            gameStarted = false;
+
+            if (startPanel != null)
+                startPanel.SetActive(true);
+
+            return;
         }
     }
 
     void Update()
     {
         CleanupDestroyedEnemies();
+
+        if (waitForStart && !gameStarted)
+            return;
 
         if (!waveStarted)
             return;
@@ -335,5 +350,17 @@ public class ZombieWaveSpawner : MonoBehaviour
 
         if (victoryPanel != null)
             victoryPanel.SetActive(false);
+    }
+
+    public void StartGame()
+    {
+        Time.timeScale = 1f;
+
+        gameStarted = true;
+
+        if (startPanel != null)
+            startPanel.SetActive(false);
+
+        StartNextWave();
     }
 }
