@@ -13964,7 +13964,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u4E3B\u9078\u55AE"
+  m_text: "\u9000\u51FA"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7f8d7bb9a1859c24d9f82fa82fe7ebff, type: 2}
   m_sharedMaterial: {fileID: 1326273821252669343, guid: 7f8d7bb9a1859c24d9f82fa82fe7ebff, type: 2}
@@ -21022,7 +21022,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u4E3B\u9078\u55AE"
+  m_text: "\u9000\u51FA"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7f8d7bb9a1859c24d9f82fa82fe7ebff, type: 2}
   m_sharedMaterial: {fileID: 1326273821252669343, guid: 7f8d7bb9a1859c24d9f82fa82fe7ebff, type: 2}
@@ -22291,7 +22291,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u7121\u76E1\u6A21\u5F0F"
+  m_text: "\u958B\u59CB\u904A\u6232"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7f8d7bb9a1859c24d9f82fa82fe7ebff, type: 2}
   m_sharedMaterial: {fileID: 1326273821252669343, guid: 7f8d7bb9a1859c24d9f82fa82fe7ebff, type: 2}
@@ -44448,7 +44448,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u52DD\u5229"
+  m_text: "\u52DD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7f8d7bb9a1859c24d9f82fa82fe7ebff, type: 2}
   m_sharedMaterial: {fileID: 1326273821252669343, guid: 7f8d7bb9a1859c24d9f82fa82fe7ebff, type: 2}
@@ -55480,7 +55480,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1230357769
 MonoBehaviour:
   m_ObjectHideFlags: 0
