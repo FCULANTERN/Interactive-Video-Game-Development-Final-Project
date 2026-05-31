@@ -53,6 +53,12 @@ public class ZombieWaveSpawner : MonoBehaviour
     public bool isWaitingNextWave = false;
     public bool isBossWave = false;
 
+    [Header("Game Flow")]
+    public int maxWaves = 30;
+    public GameObject victoryPanel;
+    public bool endlessMode = false;
+    private bool gameFinished = false;
+
     public float WaveCountdown => waveTimer;
 
     private readonly List<GameObject> aliveEnemies = new List<GameObject>();
@@ -82,6 +88,24 @@ public class ZombieWaveSpawner : MonoBehaviour
 
         if (!waveStarted)
             return;
+
+        if (gameFinished)
+            return;
+
+        Debug.Log(
+            "WaveCheck -> currentWave: " + currentWave +
+            " | maxWaves: " + maxWaves +
+            " | endlessMode: " + endlessMode +
+            " | aliveEnemyCount: " + aliveEnemyCount +
+            " | isSpawningWave: " + isSpawningWave +
+            " | isWaitingNextWave: " + isWaitingNextWave
+        );
+
+        if (!endlessMode && currentWave >= maxWaves && isWaitingNextWave && aliveEnemyCount <= 0)
+        {
+            ShowVictory();
+            return;
+        }
 
         if (isSpawningWave)
         {
@@ -128,6 +152,9 @@ public class ZombieWaveSpawner : MonoBehaviour
 
     public void StartNextWave()
     {
+        if (!endlessMode && currentWave >= maxWaves)
+            return;
+
         currentWave++;
         isBossWave = bossWaveInterval > 0 && currentWave % bossWaveInterval == 0;
 
@@ -280,5 +307,26 @@ public class ZombieWaveSpawner : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawWireCube(areaCenter, areaSize);
         }
+    }
+
+    void ShowVictory()
+    {
+        gameFinished = true;
+        Time.timeScale = 0f;
+
+        if (victoryPanel != null)
+            victoryPanel.SetActive(true);
+    }
+
+    public void StartEndlessMode()
+    {
+        endlessMode = true;
+
+        gameFinished = false;
+
+        Time.timeScale = 1f;
+
+        if (victoryPanel != null)
+            victoryPanel.SetActive(false);
     }
 }
