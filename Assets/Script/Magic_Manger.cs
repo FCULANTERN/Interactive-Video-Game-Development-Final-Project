@@ -20,6 +20,14 @@ public class Magic_Manager : MonoBehaviour
     [Header("Skill Upgrade Type")]
     public UpgradeType skillUpgradeType = UpgradeType.SkillProjectile;
 
+    [Header("Freeze (Ice spell)")]
+    public bool applyFreeze = false;
+    public float freezeDuration = 2f;
+
+    [Header("Area Effect")]
+    [Tooltip("Area-of-effect radius on hit (0 = only the directly hit enemy)")]
+    public float areaRadius = 0f;
+
     [Header("FX Lists")]
     public GameObject[] FXList_Cast;
     public GameObject[] FXList_Projectile;
@@ -150,6 +158,9 @@ public class Magic_Manager : MonoBehaviour
         {
             projectileScript.skillUpgradeType = skillUpgradeType;
             projectileScript.useUpgradeSystem = true;
+            projectileScript.applyFreeze = applyFreeze;
+            projectileScript.freezeDuration = freezeDuration;
+            projectileScript.areaRadius = areaRadius;
             projectileScript.Setup(projectileDir);
 
             if (HasValidIndex(FXList_Hit, currentFXIndex))

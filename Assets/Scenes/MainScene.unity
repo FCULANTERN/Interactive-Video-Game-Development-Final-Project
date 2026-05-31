@@ -12900,7 +12900,7 @@ GameObject:
   - component: {fileID: 308848351}
   - component: {fileID: 308848350}
   m_Layer: 5
-  m_Name: Spell1
+  m_Name: Spell1Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14689,6 +14689,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5186735023777053022, guid: ac8efb728f1fb9b4092c4df591c827ca, type: 3}
   m_PrefabInstance: {fileID: 1980839288}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &343539416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 343539417}
+  - component: {fileID: 343539418}
+  m_Layer: 5
+  m_Name: SpellKeyUI (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &343539417
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343539416}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1527193608}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 110.79994, y: -411.50003}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &343539418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343539416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeea4ec5ee21fb846b56a2ac6124c651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpellKeyUI
+  spellAction: {fileID: 5589714427448289015, guid: 27eb2dd9ab4222e4ca94bf2d45cce10a, type: 3}
+  text: {fileID: 560807942}
 --- !u!1001 &344023066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24678,6 +24728,143 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1493958779012619316, guid: b9de24523a11d714db3851b5f0f9d527, type: 3}
   m_PrefabInstance: {fileID: 1352724383}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &560807940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 560807941}
+  - component: {fileID: 560807943}
+  - component: {fileID: 560807942}
+  m_Layer: 5
+  m_Name: Spell3Key
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &560807941
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560807940}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1527193608}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 255, y: -411.5}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &560807942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560807940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: R
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 26
+  m_fontSizeBase: 26
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 174.85748, w: 17.346985}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &560807943
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560807940}
+  m_CullTransparentMesh: 1
 --- !u!1 &561651608
 GameObject:
   m_ObjectHideFlags: 0
@@ -29304,7 +29491,7 @@ GameObject:
   - component: {fileID: 658062237}
   - component: {fileID: 658062236}
   m_Layer: 5
-  m_Name: Spell2
+  m_Name: Spell2Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68621,8 +68808,10 @@ RectTransform:
   - {fileID: 658635853}
   - {fileID: 308848349}
   - {fileID: 658062235}
+  - {fileID: 560807941}
   - {fileID: 1359407744}
   - {fileID: 2135980982}
+  - {fileID: 343539417}
   m_Father: {fileID: 1006146079}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -87167,6 +87356,7 @@ GameObject:
   - component: {fileID: 1966296446}
   - component: {fileID: 1966296447}
   - component: {fileID: 1966296448}
+  - component: {fileID: 1966296449}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -87304,13 +87494,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Magic_Manager
   castCooldown: 1
   castAction: {fileID: 3875674288364162498, guid: 27eb2dd9ab4222e4ca94bf2d45cce10a, type: 3}
-  manaCost: 10
+  manaCost: 8
   spawnOffSet: {fileID: 38841696}
   target: {fileID: 0}
   spellCooldownUI: {fileID: 2029231975}
   castRotationOffset: {x: 0, y: 0, z: 0}
   projectileRotationOffset: {x: 0, y: 0, z: 0}
   skillUpgradeType: 4
+  applyFreeze: 0
+  freezeDuration: 2
+  areaRadius: 0
   FXList_Cast: []
   FXList_Projectile:
   - {fileID: 3522067147260334173, guid: 5ee0cee073951e94a9b20cd5e0207d41, type: 3}
@@ -87332,9 +87525,9 @@ MonoBehaviour:
   spawnPoint: {fileID: 1032631530}
   spellCooldownUI: {fileID: 1292014014}
   castAction: {fileID: 3877515799509492860, guid: 27eb2dd9ab4222e4ca94bf2d45cce10a, type: 3}
-  cooldown: 1
+  cooldown: 3
   destroyAfter: 3
-  manaCost: 20
+  manaCost: 15
   rotationOffset: {x: 90, y: 0, z: 0}
 --- !u!114 &1966296447
 MonoBehaviour:
@@ -87362,6 +87555,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9bee4f66ee4d1d439110d5d9e1ba123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUpgradable
+--- !u!114 &1966296449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966296438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35070bc8b86105f4e81239f185479b53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Magic_Manager
+  castCooldown: 6
+  castAction: {fileID: -3202207024432711524, guid: 27eb2dd9ab4222e4ca94bf2d45cce10a, type: 3}
+  manaCost: 30
+  spawnOffSet: {fileID: 38841696}
+  target: {fileID: 0}
+  spellCooldownUI: {fileID: 1544249691}
+  castRotationOffset: {x: 0, y: 0, z: 0}
+  projectileRotationOffset: {x: 0, y: 0, z: 0}
+  skillUpgradeType: 4
+  applyFreeze: 1
+  freezeDuration: 4
+  areaRadius: 4
+  FXList_Cast: []
+  FXList_Projectile:
+  - {fileID: 1771704844123445069, guid: 802822d3553f52b44b96bec3e623625f, type: 3}
+  FXList_Hit:
+  - {fileID: 5213359654510746434, guid: 3c604f0562297d7458fe30545d03f467, type: 3}
 --- !u!4 &1966637842 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3899520030807063256, guid: 299e7a1cb6456cf4fa6079cf5978df9b, type: 3}
