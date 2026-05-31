@@ -1,20 +1,45 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using TMPro;
 
 public class AudioSettings : MonoBehaviour
 {
-    [SerializeField] private Slider masterSlider;
-    [SerializeField] private TextMeshProUGUI masterText;
+    public enum Channel { Master, Music, SFX }
+
+    [SerializeField] private Channel channel = Channel.Master;
+
+    [FormerlySerializedAs("masterSlider")]
+    [SerializeField] private Slider slider;
+    [FormerlySerializedAs("masterText")]
+    [SerializeField] private TextMeshProUGUI volumeText;
+
+    private string VolumeKey => "save_volume_" + channel;
+
+    // 0–1 value for this channel; read this when wiring up audio later.
+    public float Volume01 { get; private set; } = 1f;
 
     private void Start()
     {
-        UpdateMasterVolume(masterSlider.value);
-
+        float saved = PlayerPrefs.GetFloat(VolumeKey, slider.value);
+        slider.value = saved;
+        ApplyVolume(saved);
+        slider.onValueChanged.AddListener(ApplyVolume);
     }
 
-    private void UpdateMasterVolume(float value)
+    private void ApplyVolume(float value)
     {
-        masterText.text = $"{(int)value} %";
+        volumeText.text = $"{(int)value} %";
+        Volume01 = value / 100f;
+
+        if (channel == Channel.Master)
+            AudioListener.volume = Volume01;
+
+        PlayerPrefs.SetFloat(VolumeKey, value);
+    }
+
+    private void OnDisable()
+    {
+        PlayerPrefs.Save();
     }
 }

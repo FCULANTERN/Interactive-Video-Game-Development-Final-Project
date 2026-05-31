@@ -33,9 +33,37 @@ public class RebindKey : MonoBehaviour
         mouseIcon.gameObject.SetActive(false);
     }
 
+    private const string BindingsKey = "save_input_bindings";
+
+    void Awake()
+    {
+        LoadBindingOverrides();
+    }
+
     void Start()
     {
         UpdateVisual();
+    }
+
+    void LoadBindingOverrides()
+    {
+        var asset = actionReference != null && actionReference.action != null
+            ? actionReference.action.actionMap?.asset
+            : null;
+        if (asset == null) return;
+
+        string json = PlayerPrefs.GetString(BindingsKey, "");
+        if (!string.IsNullOrEmpty(json))
+            asset.LoadBindingOverridesFromJson(json);
+    }
+
+    void SaveBindingOverrides()
+    {
+        var asset = actionReference.action.actionMap?.asset;
+        if (asset == null) return;
+
+        PlayerPrefs.SetString(BindingsKey, asset.SaveBindingOverridesAsJson());
+        PlayerPrefs.Save();
     }
 
     void Update()
@@ -72,9 +100,17 @@ public class RebindKey : MonoBehaviour
 
         waitingForKey = false;
 
+        if (actionReference == null || actionReference.action == null)
+        {
+            Debug.LogWarning($"RebindKey on '{name}': Input Action reference is not assigned.", this);
+            return;
+        }
+
         var action = actionReference.action;
 
         action.ApplyBindingOverride(bindingIndex, path);
+
+        SaveBindingOverrides();
 
         UpdateVisual();
 
@@ -82,6 +118,12 @@ public class RebindKey : MonoBehaviour
 
     void UpdateVisual()
     {
+        if (actionReference == null || actionReference.action == null)
+        {
+            Debug.LogWarning($"RebindKey on '{name}': Input Action reference is not assigned.", this);
+            return;
+        }
+
         var action = actionReference.action;
 
         if (action.bindings.Count <= bindingIndex)

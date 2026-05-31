@@ -172,6 +172,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c5970e57284ae464795241394794c14f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8106561075646636436}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c5970e57284ae464795241394794c14f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2909232757641817771}
   m_SourcePrefab: {fileID: 100100000, guid: c5970e57284ae464795241394794c14f, type: 3}
 --- !u!4 &5764999033874731612 stripped
 Transform:
@@ -283,3 +286,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoldDrop
   goldAmount: 10
+--- !u!114 &2909232757641817771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6578268938732472550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1490bd5e33894b1c81e81917ddc9525d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OrbDrop
+  healthOrbPrefab: {fileID: 1000000000000000001, guid: c9ae9285e33e48359557ce382cdf6406, type: 3}
+  manaOrbPrefab: {fileID: 2000000000000000001, guid: 597a435098a940b789f3eddf1626c4b3, type: 3}
+  healthDropChance: 0.1
+  manaDropChance: 0.1
+  spawnHeight: 0.5
