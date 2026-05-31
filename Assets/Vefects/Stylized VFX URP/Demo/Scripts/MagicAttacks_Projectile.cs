@@ -23,6 +23,9 @@ public class MagicAttacks_Projectile : MonoBehaviour
     // Area-of-effect radius (0 = single target, >0 = affects all enemies in range on hit)
     [HideInInspector] public float areaRadius = 0f;
 
+    // Damage multiplier applied on top of the base/upgrade damage (set by Magic_Manager)
+    [HideInInspector] public float damageMultiplier = 1f;
+
     VisualEffect FX_Projectile;
     VisualEffect FX_ProjectileTail;
     AudioSource SFX_Projectile;
@@ -38,6 +41,9 @@ public class MagicAttacks_Projectile : MonoBehaviour
         // 從升級系統取得傷害
         if (useUpgradeSystem && UpgradeSystem.Instance != null)
             damage = UpgradeSystem.Instance.GetSkillDamage(skillUpgradeType);
+
+        if (damageMultiplier != 1f)
+            damage = Mathf.Max(1, Mathf.RoundToInt(damage * damageMultiplier));
 
         Destroy(gameObject, 5f);
     }
