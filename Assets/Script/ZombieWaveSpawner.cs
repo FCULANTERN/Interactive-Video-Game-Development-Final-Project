@@ -241,6 +241,13 @@ public class ZombieWaveSpawner : MonoBehaviour
             ai.attackDamage = Mathf.Max(1, Mathf.RoundToInt(ai.attackDamage * damageMult));
             ai.moveSpeed *= speedMult;
         }
+
+        RangedEnemyAI rangedAi = enemy.GetComponent<RangedEnemyAI>();
+        if (rangedAi != null)
+        {
+            rangedAi.projectileDamage = Mathf.Max(1, Mathf.RoundToInt(rangedAi.projectileDamage * damageMult));
+            rangedAi.moveSpeed *= speedMult;
+        }
     }
 
     Vector3 GetSpawnPosition()

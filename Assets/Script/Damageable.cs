@@ -11,6 +11,8 @@ public class Damageable : MonoBehaviour
     public float knockbackForce = 3f;
     public float stunDuration = 0.2f;
     public GameObject hitParticlePrefab;
+    [Tooltip("Offset (relative to the enemy pivot) where the hit particle spawns")]
+    public Vector3 hitParticleOffset = Vector3.up;
 
     [Header("Death")]
     public float tipDuration = 0.5f;
@@ -65,7 +67,7 @@ public class Damageable : MonoBehaviour
     void SpawnHitParticle()
     {
         if (hitParticlePrefab == null) return;
-        Vector3 pos = transform.position + Vector3.up;
+        Vector3 pos = transform.position + hitParticleOffset;
         GameObject fx = Instantiate(hitParticlePrefab, pos, Quaternion.identity);
         ParticleSystem ps = fx.GetComponent<ParticleSystem>();
         if (ps != null) ps.Play();

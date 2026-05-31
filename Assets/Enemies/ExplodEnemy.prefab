@@ -158,7 +158,7 @@ MonoBehaviour:
   rotateSpeed: 8
   fuseDistance: 4
   fuseTime: 1
-  explosionRadius: 8
+  explosionRadius: 5
   explosionDamage: 10
   explosionVFX: {fileID: 7963070265621199737, guid: d8b3feef50c293240b1ef25d86eb2da7, type: 3}
   vfxScale: 3
