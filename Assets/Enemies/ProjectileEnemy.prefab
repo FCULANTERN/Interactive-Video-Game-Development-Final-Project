@@ -161,6 +161,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 527fbceb2e580184c858d2687d7a3374, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5100000000000000006}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 527fbceb2e580184c858d2687d7a3374, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8091097573363872962}
     - targetCorrespondingSourceObject: {fileID: -6341989517116631186, guid: 527fbceb2e580184c858d2687d7a3374, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1676752896072328305}
@@ -316,6 +319,19 @@ MonoBehaviour:
   healthDropChance: 0.1
   manaDropChance: 0.1
   spawnHeight: 0.5
+--- !u!114 &-8091097573363872962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8609765481127871868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0be2454d256d1d74baf17b718a624aa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoldDrop
+  goldAmount: 1
 --- !u!4 &8950861078682427334 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 527fbceb2e580184c858d2687d7a3374, type: 3}

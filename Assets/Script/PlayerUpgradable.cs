@@ -49,8 +49,7 @@ public class PlayerUpgradable : MonoBehaviour
                 break;
 
             case UpgradeType.MoveSpeed:
-                if (playerMovement != null)
-                    playerMovement.moveSpeed = baseMoveSpeed + value;
+                // 此槽位已改為 R 鍵技能升級，由技能腳本自己從 UpgradeSystem 取值
                 break;
 
             case UpgradeType.HPRegen:

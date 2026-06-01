@@ -24489,7 +24489,7 @@ MonoBehaviour:
   FX_Hit: {fileID: 0}
   damage: 1
   moveSpeed: 60
-  hitRadius: 0.5
+  hitRadius: 0.6
   skillUpgradeType: 4
   useUpgradeSystem: 0
   applyFreeze: 0

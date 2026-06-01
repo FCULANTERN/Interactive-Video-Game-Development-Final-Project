@@ -19,10 +19,14 @@ public class Magic_Manager : MonoBehaviour
 
     [Header("Skill Upgrade Type")]
     public UpgradeType skillUpgradeType = UpgradeType.SkillProjectile;
+    [Tooltip("這些 FX index 不受升級系統影響，使用 prefab 上原本的 damage。例如 Void Spell 在第 3 個位置（從 0 起）填 3")]
+    public int[] upgradeIgnoredFXIndices;
 
     [Header("Freeze (Ice spell)")]
     public bool applyFreeze = false;
     public float freezeDuration = 2f;
+    [Tooltip("每升一級增加的冰凍秒數（僅 applyFreeze 開啟時生效）")]
+    public float freezeDurationPerLevel = 0.5f;
 
     [Header("Area Effect")]
     [Tooltip("Area-of-effect radius on hit (0 = only the directly hit enemy)")]
@@ -160,10 +164,27 @@ public class Magic_Manager : MonoBehaviour
         MagicAttacks_Projectile projectileScript = projectile.GetComponent<MagicAttacks_Projectile>();
         if (projectileScript != null)
         {
+            bool ignoreUpgrade = false;
+            if (upgradeIgnoredFXIndices != null)
+            {
+                foreach (int idx in upgradeIgnoredFXIndices)
+                    if (idx == currentFXIndex) { ignoreUpgrade = true; break; }
+            }
+
             projectileScript.skillUpgradeType = skillUpgradeType;
-            projectileScript.useUpgradeSystem = true;
+            // 冰凍技能不使用升級傷害（升級只影響冰凍時間），保留 prefab 上的固定 damage
+            projectileScript.useUpgradeSystem = !ignoreUpgrade && !applyFreeze;
             projectileScript.applyFreeze = applyFreeze;
-            projectileScript.freezeDuration = freezeDuration;
+
+            // 冰凍時間隨升級等級提升
+            float scaledFreeze = freezeDuration;
+            if (applyFreeze && UpgradeSystem.Instance != null)
+            {
+                var upgradeData = UpgradeSystem.Instance.GetData(skillUpgradeType);
+                if (upgradeData != null)
+                    scaledFreeze += (upgradeData.currentLevel - 1) * freezeDurationPerLevel;
+            }
+            projectileScript.freezeDuration = scaledFreeze;
             projectileScript.areaRadius = areaRadius;
             projectileScript.damageMultiplier = damageMultiplier;
             projectileScript.Setup(projectileDir);

@@ -101,37 +101,37 @@ public class UpgradeSystem : MonoBehaviour
                 new UpgradeData
                 {
                     type           = UpgradeType.MoveSpeed,
-                    name           = "Move Speed",
-                    description    = "移動速度 +0.5 / 等級",
+                    name           = "冰凍",
+                    description    = "R 鍵冰凍時間 +0.5s / 等級",
                     currentLevel   = 1, maxLevel = 10,
-                    goldCostPerLevel = 25, valuePerLevel = 0.5f,
+                    goldCostPerLevel = 25, valuePerLevel = 5f,
                     isLocked = false
                 },
                 new UpgradeData
                 {
                     type           = UpgradeType.HPRegen,
                     name           = "HP Regen",
-                    description    = "HP 回復速度 +0.1 / 等級",
+                    description    = "HP 回復速度 +0.5 / 等級",
                     currentLevel   = 1, maxLevel = 10,
-                    goldCostPerLevel = 30, valuePerLevel = 0.1f,
+                    goldCostPerLevel = 30, valuePerLevel = 0.5f,
                     isLocked = false
                 },
                 new UpgradeData
                 {
                     type           = UpgradeType.ManaRegen,
                     name           = "Mana Regen",
-                    description    = "Mana 回復速度 +0.1 / 等級",
+                    description    = "Mana 回復速度 +1 / 等級",
                     currentLevel   = 1, maxLevel = 10,
-                    goldCostPerLevel = 30, valuePerLevel = 0.1f,
+                    goldCostPerLevel = 30, valuePerLevel = 1f,
                     isLocked = false
                 },
                 new UpgradeData
                 {
                     type           = UpgradeType.SkillProjectile,
                     name           = "Skill: Projectile",
-                    description    = "E 鍵技能傷害 +2 / 等級",
+                    description    = "投擲技能傷害 +5 / 等級",
                     currentLevel   = 1, maxLevel = 10,
-                    goldCostPerLevel = 40, valuePerLevel = 2f,
+                    goldCostPerLevel = 40, valuePerLevel = 5f,
                     isLocked = false
                 },
                 new UpgradeData
@@ -230,5 +230,26 @@ public class UpgradeSystem : MonoBehaviour
         currentGold += amount;
         SaveProgress();
         OnGoldChanged?.Invoke(currentGold);
+    }
+
+    void Update()
+    {
+        if (UnityEngine.InputSystem.Keyboard.current != null
+            && UnityEngine.InputSystem.Keyboard.current.lKey.wasPressedThisFrame)
+            ResetAllUpgrades();
+    }
+
+    [ContextMenu("Reset All Upgrades")]
+    public void ResetAllUpgrades()
+    {
+        foreach (var u in upgrades)
+        {
+            u.currentLevel = 1;
+            PlayerPrefs.DeleteKey(LevelKeyPrefix + (int)u.type);
+            OnUpgradeChanged?.Invoke(u.type);
+        }
+
+        PlayerPrefs.Save();
+        Debug.Log("升級系統已重置");
     }
 }

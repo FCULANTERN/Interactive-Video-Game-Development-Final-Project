@@ -10,7 +10,7 @@ public class MagicAttacks_Projectile : MonoBehaviour
     public float moveSpeed = 60f;
 
     // Sweep radius for continuous hit detection (prevents passing through enemies at close range / high speed)
-    public float hitRadius = 0.5f;
+    public float hitRadius = 0.6f;
 
     // 從哪個升級類型取得傷害（由 Magic_Manager 設定）
     [HideInInspector] public UpgradeType skillUpgradeType = UpgradeType.SkillProjectile;

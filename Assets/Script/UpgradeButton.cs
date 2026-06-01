@@ -69,7 +69,7 @@ public class UpgradeButton : MonoBehaviour
         {
             if (upgradeCostText != null)
             {
-                upgradeCostText.text  = "MAX";
+                upgradeCostText.text  = "滿等";
                 upgradeCostText.color = maxLevelColor;
             }
             if (upgradeButton != null) upgradeButton.interactable = false;
@@ -82,7 +82,7 @@ public class UpgradeButton : MonoBehaviour
 
         if (upgradeCostText != null)
         {
-            upgradeCostText.text  = $"Cost: {cost}";
+            upgradeCostText.text  = $"花費: {cost}";
             upgradeCostText.color = canAfford ? canAffordColor : cannotAffordColor;
         }
         if (upgradeButton != null) upgradeButton.interactable = canAfford;
@@ -99,7 +99,7 @@ public class UpgradeButton : MonoBehaviour
         }
         if (upgradeCostText != null)
         {
-            upgradeCostText.text  = "🔒 Locked";
+            upgradeCostText.text  = "🔒 未解鎖";
             upgradeCostText.color = lockedColor;
         }
         if (upgradeButton != null) upgradeButton.interactable = false;
