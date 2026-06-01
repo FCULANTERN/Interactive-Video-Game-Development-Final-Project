@@ -274,6 +274,8 @@ MonoBehaviour:
   tipDuration: 0.5
   groundDelay: 10
   fadeDuration: 0.8
+  showHealthBar: 1
+  healthBarHeight: 1
 --- !u!114 &5100000000000000005
 MonoBehaviour:
   m_ObjectHideFlags: 0
