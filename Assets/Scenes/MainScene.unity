@@ -41682,6 +41682,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProjectileEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8609765481127871868, guid: c8a1f2e3d4b54607a8b9c0d1e2f30405, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8950861078682427334, guid: c8a1f2e3d4b54607a8b9c0d1e2f30405, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.67
@@ -64034,6 +64038,7 @@ MonoBehaviour:
   endlessMode: 0
   startPanel: {fileID: 652202209}
   waitForStart: 1
+  gameStarted: 0
 --- !u!4 &1348798902 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9069115365609054727, guid: 60f79905accf3b24fa0114b941f1aac0, type: 3}

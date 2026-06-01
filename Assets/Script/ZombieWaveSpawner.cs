@@ -62,7 +62,7 @@ public class ZombieWaveSpawner : MonoBehaviour
     [Header("Start Screen")]
     public GameObject startPanel;
     public bool waitForStart = true;
-    private bool gameStarted = false;
+    public bool gameStarted = false;
 
     public float WaveCountdown => waveTimer;
 
@@ -77,6 +77,7 @@ public class ZombieWaveSpawner : MonoBehaviour
     void Awake()
     {
         Instance = this;
+
     }
 
     void Start()
@@ -167,6 +168,9 @@ public class ZombieWaveSpawner : MonoBehaviour
 
     public void StartNextWave()
     {
+        if (!gameStarted)
+            return;
+
         if (!endlessMode && currentWave >= maxWaves)
             return;
 
@@ -199,6 +203,9 @@ public class ZombieWaveSpawner : MonoBehaviour
 
     void SpawnEnemy(bool isBoss)
     {
+        if (!gameStarted)
+            return;
+
         GameObject prefabToSpawn;
 
         if (isBoss && bossPrefab != null)

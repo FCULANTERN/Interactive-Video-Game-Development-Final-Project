@@ -45,12 +45,15 @@ public class UpgradeUI : MonoBehaviour
 
             if (isOpen)
             {
-                Time.timeScale = 0f; // pause
+                Time.timeScale = 0f;
             }
             else
             {
-                Time.timeScale = 1f; // reprise
+            if (ZombieWaveSpawner.Instance != null && ZombieWaveSpawner.Instance.gameStarted)
+            {
+                Time.timeScale = 1f;
             }
+        }
     }
 
     void UpdateGoldDisplay(int gold)
