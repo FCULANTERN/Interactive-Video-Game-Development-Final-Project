@@ -64000,6 +64000,8 @@ MonoBehaviour:
     minWave: 2
   - prefab: {fileID: 8609765481127871868, guid: c8a1f2e3d4b54607a8b9c0d1e2f30405, type: 3}
     minWave: 3
+  - prefab: {fileID: 5045791634622737313, guid: f6e252732eeaa6a418d436900004009a, type: 3}
+    minWave: 8
   startEnemyCount: 5
   enemyIncreasePerWave: 2
   timeBetweenWaves: 1

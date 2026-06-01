@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be2454d256d1d74baf17b718a624aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoldDrop
-  goldAmount: 10
+  goldAmount: 5
 --- !u!114 &2909232757641817771
 MonoBehaviour:
   m_ObjectHideFlags: 0
