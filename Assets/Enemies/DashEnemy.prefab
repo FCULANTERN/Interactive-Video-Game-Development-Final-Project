@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f9043b483a456748a896165b469d75e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Damageable
-  maxHealth: 3
+  maxHealth: 10
   knockbackForce: 3
   stunDuration: 0.2
   hitParticlePrefab: {fileID: 0}
@@ -274,7 +274,7 @@ MonoBehaviour:
   dashSpeed: 18
   dashDuration: 0.35
   dashCooldown: 2.5
-  attackDamage: 18
+  attackDamage: 11
   dashHitRadius: 1.4
   attackVFX: {fileID: 5113482876390019511, guid: 7790f51da6c60a1439bfd51e32596ec6, type: 3}
   vfxScale: 1
