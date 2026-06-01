@@ -2,25 +2,31 @@ using UnityEngine;
 using System.Collections.Generic;
 
 /// <summary>
-/// Temporarily "freezes" an enemy: halts its AI and physics and tints it ice-blue,
-/// then restores everything when the duration runs out. Added at runtime by the
-/// Ice spell (via Magic_Manager / MagicAttacks_Projectile) when its projectile hits.
-/// Works with any enemy type by disabling whichever AI components are present.
+/// 暫時「冰凍」敵人：停止 AI 與物理，並把外觀染成冰白色。
+/// 使用 MaterialPropertyBlock，不修改材質實例，build 不會因為 shader variant
+/// 被 strip 而失效。
 /// </summary>
 public class FrozenEffect : MonoBehaviour
 {
-    public static readonly Color IceTint = new Color(0.45f, 0.75f, 1f);
+    /// <summary>染色顏色（偏冷的雪白）</summary>
+    public static readonly Color IceTint = new Color(0.75f, 0.92f, 1f);
+    /// <summary>染色強度 0~1（1 = 完全變冰色）</summary>
+    public const float TintBlend = 0.85f;
 
     private float timer;
     private bool active;
 
     private readonly List<MonoBehaviour> disabledBehaviours = new List<MonoBehaviour>();
-    private readonly List<Material> tintedMaterials = new List<Material>();
-    private readonly List<Color> originalEmission = new List<Color>();
+    private readonly List<Renderer> tintedRenderers = new List<Renderer>();
     private Rigidbody rb;
     private bool prevKinematic;
 
-    /// <summary>Freeze the target for the given duration. Re-hitting refreshes the timer.</summary>
+    private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
+    private static readonly int ColorId = Shader.PropertyToID("_Color");
+    private static readonly int BaseMapId = Shader.PropertyToID("_BaseMap");
+    private static readonly int MainTexId = Shader.PropertyToID("_MainTex");
+
+    /// <summary>對目標敵人施加冰凍。重複呼叫會延長時間。</summary>
     public static void Apply(GameObject target, float duration)
     {
         if (target == null || duration <= 0f) return;
@@ -31,17 +37,17 @@ public class FrozenEffect : MonoBehaviour
 
     void Begin(float duration)
     {
-        // Refresh / extend the freeze if already frozen.
         timer = Mathf.Max(timer, duration);
         if (active) return;
         active = true;
 
-        // Halt every AI controller this enemy has.
+        // 停止 AI
         DisableIfPresent(GetComponent<EnemyAI>());
         DisableIfPresent(GetComponent<RangedEnemyAI>());
         DisableIfPresent(GetComponent<ExplodingEnemyAI>());
+        DisableIfPresent(GetComponent<DashEnemyAI>());
 
-        // Freeze physics so it stops in place.
+        // 停止物理
         rb = GetComponent<Rigidbody>();
         if (rb != null)
         {
@@ -51,20 +57,40 @@ public class FrozenEffect : MonoBehaviour
             rb.isKinematic = true;
         }
 
-        // Ice-blue glow.
+        ApplyTint();
+    }
+
+    void ApplyTint()
+    {
+        Color tinted = Color.Lerp(Color.white, IceTint, TintBlend);
+        var mpb = new MaterialPropertyBlock();
+        Texture2D white = Texture2D.whiteTexture;
+
         foreach (var r in GetComponentsInChildren<Renderer>())
         {
-            foreach (var m in r.materials)
-            {
-                if (m.HasProperty("_EmissionColor"))
-                {
-                    tintedMaterials.Add(m);
-                    originalEmission.Add(m.GetColor("_EmissionColor"));
-                    m.SetColor("_EmissionColor", IceTint);
-                    m.EnableKeyword("_EMISSION");
-                }
-            }
+            if (r == null) continue;
+            if (r is ParticleSystemRenderer) continue;
+
+            r.GetPropertyBlock(mpb);
+            // 用全白貼圖蓋掉原本的紋理，這樣 _BaseColor 才能直接顯示成冰色
+            mpb.SetTexture(BaseMapId, white);
+            mpb.SetTexture(MainTexId, white);
+            mpb.SetColor(BaseColorId, tinted);
+            mpb.SetColor(ColorId, tinted);
+            r.SetPropertyBlock(mpb);
+
+            tintedRenderers.Add(r);
         }
+    }
+
+    void ClearTint()
+    {
+        foreach (var r in tintedRenderers)
+        {
+            if (r == null) continue;
+            r.SetPropertyBlock(null);
+        }
+        tintedRenderers.Clear();
     }
 
     void DisableIfPresent(MonoBehaviour mb)
@@ -79,10 +105,8 @@ public class FrozenEffect : MonoBehaviour
     void Update()
     {
         if (!active) return;
-
         timer -= Time.deltaTime;
         if (timer > 0f) return;
-
         Restore();
     }
 
@@ -93,22 +117,20 @@ public class FrozenEffect : MonoBehaviour
         Damageable dmg = GetComponent<Damageable>();
         bool dead = dmg != null && dmg.isDead;
 
-        // Re-enable AI (the AI scripts self-disable again if the enemy died meanwhile).
         foreach (var mb in disabledBehaviours)
             if (mb != null) mb.enabled = true;
         disabledBehaviours.Clear();
 
-        // Restore physics unless the enemy died (its death sequence owns the body now).
         if (rb != null && !dead)
             rb.isKinematic = prevKinematic;
 
-        // Restore emission colours.
-        for (int i = 0; i < tintedMaterials.Count; i++)
-            if (tintedMaterials[i] != null)
-                tintedMaterials[i].SetColor("_EmissionColor", originalEmission[i]);
-        tintedMaterials.Clear();
-        originalEmission.Clear();
-
+        ClearTint();
         Destroy(this);
+    }
+
+    void OnDestroy()
+    {
+        if (active)
+            ClearTint();
     }
 }

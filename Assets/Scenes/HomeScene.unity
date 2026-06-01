@@ -7697,7 +7697,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8950861078682427334, guid: c8a1f2e3d4b54607a8b9c0d1e2f30405, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 461
+      value: 481
       objectReference: {fileID: 0}
     - target: {fileID: 8950861078682427334, guid: c8a1f2e3d4b54607a8b9c0d1e2f30405, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7705,7 +7705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8950861078682427334, guid: c8a1f2e3d4b54607a8b9c0d1e2f30405, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -350
+      value: -392
       objectReference: {fileID: 0}
     - target: {fileID: 8950861078682427334, guid: c8a1f2e3d4b54607a8b9c0d1e2f30405, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7742,6 +7742,7 @@ PrefabInstance:
     - {fileID: 5100000000000000003, guid: c8a1f2e3d4b54607a8b9c0d1e2f30405, type: 3}
     m_RemovedGameObjects:
     - {fileID: 5100000000000000011, guid: c8a1f2e3d4b54607a8b9c0d1e2f30405, type: 3}
+    - {fileID: 2616387427022163693, guid: c8a1f2e3d4b54607a8b9c0d1e2f30405, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8950861078682427334, guid: c8a1f2e3d4b54607a8b9c0d1e2f30405, type: 3}
       insertIndex: -1
@@ -7812,7 +7813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
   m_Material: {fileID: 2100000, guid: f4b8de8ea627b1f478f395cba0ebaf66, type: 2}
-  m_DrawDistance: 1000
+  m_DrawDistance: 10
   m_FadeScale: 0.9
   m_StartAngleFade: 180
   m_EndAngleFade: 180

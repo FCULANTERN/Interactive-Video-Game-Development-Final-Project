@@ -108,22 +108,41 @@ public class ExplodingEnemyAI : MonoBehaviour
     }
 
     // ── 引信閃爍（顏色在紅色和白色之間快速閃動，越接近爆炸越快）───
+    // 使用 MaterialPropertyBlock + _BaseColor，避免 build 時 _EMISSION variant 被 strip
+    private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
+    private static readonly int ColorId = Shader.PropertyToID("_Color");
+    private MaterialPropertyBlock _fuseMpb;
+
     void ApplyFuseEffect()
     {
         float progress  = 1f - Mathf.Clamp01(fuseTimer / fuseTime);   // 0→1
         float blinkRate = Mathf.Lerp(4f, 20f, progress);               // 越到後期越快
-        float intensity = Mathf.Abs(Mathf.Sin(Time.time * blinkRate)) * 2f;
-        Color emitColor = Color.Lerp(Color.red, Color.white, intensity * 0.5f) * intensity;
+        float intensity = Mathf.Abs(Mathf.Sin(Time.time * blinkRate));
+
+        // 在白色和紅色之間切換
+        Color tint = Color.Lerp(Color.white, Color.red, intensity);
+
+        if (_fuseMpb == null) _fuseMpb = new MaterialPropertyBlock();
 
         foreach (Renderer r in renderers)
         {
-            foreach (Material m in r.materials)
+            if (r == null) continue;
+            if (r is ParticleSystemRenderer) continue;
+            r.GetPropertyBlock(_fuseMpb);
+            _fuseMpb.SetColor(BaseColorId, tint);
+            _fuseMpb.SetColor(ColorId, tint);
+            r.SetPropertyBlock(_fuseMpb);
+        }
+    }
+
+    void OnDisable()
+    {
+        // 清掉 PropertyBlock，避免敵人被銷毀時殘留紅色
+        if (renderers != null)
+        {
+            foreach (Renderer r in renderers)
             {
-                if (m.HasProperty("_EmissionColor"))
-                {
-                    m.SetColor("_EmissionColor", emitColor);
-                    m.EnableKeyword("_EMISSION");
-                }
+                if (r != null) r.SetPropertyBlock(null);
             }
         }
     }
