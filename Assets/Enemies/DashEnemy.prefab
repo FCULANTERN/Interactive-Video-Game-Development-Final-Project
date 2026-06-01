@@ -270,12 +270,14 @@ MonoBehaviour:
   rotateSpeed: 10
   dashTriggerDistance: 6
   meleeDistance: 1.5
-  dashChargeTime: 0.4
-  dashSpeed: 18
+  dashChargeTime: 0.5
+  dashSpeed: 17
   dashDuration: 0.35
   dashCooldown: 2.5
-  attackDamage: 11
+  attackDamage: 14
   dashHitRadius: 1.4
+  meleeDamage: 2
+  meleeInterval: 0.6
   attackVFX: {fileID: 5113482876390019511, guid: 7790f51da6c60a1439bfd51e32596ec6, type: 3}
   vfxScale: 1
   vfxLocalOffset: {x: 0, y: 1, z: 0.5}

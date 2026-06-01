@@ -31,10 +31,14 @@ public class DashEnemyAI : MonoBehaviour
     public float dashCooldown = 2.5f;
 
     [Header("Damage")]
-    [Tooltip("�Ĩ�R���Ϊ񨭧������ˮ`")]
+    [Tooltip("�Ĩ�R���Ĥ�����Ĭ`")]
     public int attackDamage = 4;
     [Tooltip("�Ĩ�R���P�w�b�|")]
     public float dashHitRadius = 1.2f;
+    [Tooltip("���Ĥ��Y�Ĥ���Ĭ`�]�Ȟ�׭�W�֦غ�^")]
+    public int meleeDamage = 2;
+    [Tooltip("�Ĥ���Y�Ī����ʬ�һ��ɭ�")]
+    public float meleeInterval = 0.6f;
 
     [Header("VFX")]
     [Tooltip("�������Ĩ�S�� Prefab�A�Ҧp VFX_Piercing_Ice")]
@@ -111,8 +115,9 @@ public class DashEnemyAI : MonoBehaviour
         // �񨭪�����
         if (distance <= meleeDistance)
         {
-            DealDamage();
-            stunTimer = 0.6f; // �u�Ȱ��y�קK�C�V����
+            if (playerHealth != null)
+                playerHealth.TakeDamage(meleeDamage);
+            stunTimer = meleeInterval; // �u�Ȱ��y�ת��V����
             return;
         }
 
