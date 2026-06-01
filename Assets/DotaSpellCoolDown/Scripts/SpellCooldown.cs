@@ -22,7 +22,7 @@ public class SpellCooldown : MonoBehaviour
     void Start()
     {
         textCooldown.gameObject.SetActive(false);
-        imageEdge.gameObject.SetActive(false);
+        if (imageEdge != null) imageEdge.gameObject.SetActive(false);
         imageCooldown.fillAmount = 0.0f;
     }
 
@@ -47,14 +47,14 @@ public class SpellCooldown : MonoBehaviour
         {
             isCoolDown = false;
             textCooldown.gameObject.SetActive(false);
-            imageEdge.gameObject.SetActive(false);
+            if (imageEdge != null) imageEdge.gameObject.SetActive(false);
             imageCooldown.fillAmount = 0.0f;
         }
         else
         {
             textCooldown.text = Mathf.CeilToInt(cooldownTimer).ToString();
             imageCooldown.fillAmount = cooldownTimer / cooldownTime;
-            imageEdge.transform.localEulerAngles = new Vector3(0, 0, 360.0f * (cooldownTimer / cooldownTime));
+            if (imageEdge != null) imageEdge.transform.localEulerAngles = new Vector3(0, 0, 360.0f * (cooldownTimer / cooldownTime));
         }
     }
 
@@ -71,7 +71,7 @@ public class SpellCooldown : MonoBehaviour
             cooldownTimer = cooldownTime;
             textCooldown.text = Mathf.CeilToInt(cooldownTimer).ToString();
             imageCooldown.fillAmount = 1.0f;
-            imageEdge.gameObject.SetActive(true);
+            if (imageEdge != null) imageEdge.gameObject.SetActive(true);
             return true;
         }
     }

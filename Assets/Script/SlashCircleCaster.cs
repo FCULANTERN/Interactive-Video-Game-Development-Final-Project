@@ -31,7 +31,7 @@ public class SlashCircleCaster : MonoBehaviour
             if (cooldownTimer <= 0f)
             {
                 cooldownTimer = 0f;
-                isCasting = false; // 🔓 libère le verrou quand le cooldown est fini
+                isCasting = false;
             }
         }
     }

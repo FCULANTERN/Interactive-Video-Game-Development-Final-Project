@@ -24386,7 +24386,7 @@ AudioSource:
   m_GameObject: {fileID: 3522067147260334173}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3502584622570615252, guid: 0acfd4e3af1bbda488ad6f5cf229f131, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 9cfe63f33166ba2469c94fe66392833c, type: 3}
   m_PlayOnAwake: 1
@@ -24487,6 +24487,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FX_Hit: {fileID: 0}
+  damage: 1
+  moveSpeed: 60
+  hitRadius: 0.5
+  skillUpgradeType: 4
+  useUpgradeSystem: 0
+  applyFreeze: 0
+  freezeDuration: 2
+  areaRadius: 0
+  damageMultiplier: 1
 --- !u!1 &4053222862627641581
 GameObject:
   m_ObjectHideFlags: 0

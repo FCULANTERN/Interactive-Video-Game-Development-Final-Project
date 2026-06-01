@@ -202,9 +202,12 @@ MonoBehaviour:
   knockbackForce: 3
   stunDuration: 0.2
   hitParticlePrefab: {fileID: 7226583673155636401, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
+  hitParticleOffset: {x: 0, y: 1, z: 0}
   tipDuration: 0.5
   groundDelay: 10
   fadeDuration: 0.8
+  showHealthBar: 1
+  healthBarHeight: 1
 --- !u!114 &-2905033684145524350
 MonoBehaviour:
   m_ObjectHideFlags: 0

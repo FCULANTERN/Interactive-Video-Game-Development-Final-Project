@@ -19,8 +19,18 @@ public class Damageable : MonoBehaviour
     public float groundDelay = 10f;
     public float fadeDuration = 0.8f;
 
+    [Header("Health Bar")]
+    [Tooltip("Show a health bar above the enemy's head")]
+    public bool showHealthBar = true;
+    [Tooltip("Extra lift above the top of the enemy (world units)")]
+    public float healthBarHeight = 0.4f;
+
     private int currentHealth;
     public bool isDead { get; private set; }
+
+    public int CurrentHealth => currentHealth;
+    public int MaxHealth => maxHealth;
+    public float HealthRatio => maxHealth > 0 ? Mathf.Clamp01((float)currentHealth / maxHealth) : 0f;
     private Rigidbody rb;
     private Renderer[] renderers;
 
@@ -33,6 +43,10 @@ public class Damageable : MonoBehaviour
         // 確保 Decal 在遠距離也可見
         var decal = GetComponentInChildren<DecalProjector>();
         if (decal != null) decal.drawDistance = 1000f;
+
+        // Automatically create the health bar above the head
+        if (showHealthBar)
+            EnemyHealthBar.Attach(this, healthBarHeight);
     }
 
     public void TakeDamage(int damage, Vector3 hitDirection)
