@@ -236,7 +236,12 @@ public class UpgradeSystem : MonoBehaviour
     {
         if (UnityEngine.InputSystem.Keyboard.current != null
             && UnityEngine.InputSystem.Keyboard.current.lKey.wasPressedThisFrame)
-            ResetAllUpgrades();
+        {
+            currentGold = 100;
+            SaveProgress();
+            OnGoldChanged?.Invoke(currentGold);
+            Debug.Log("金幣已重置為 100");
+        }
     }
 
     [ContextMenu("Reset All Upgrades")]
