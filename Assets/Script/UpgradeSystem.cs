@@ -241,6 +241,7 @@ public class UpgradeSystem : MonoBehaviour
             SaveProgress();
             OnGoldChanged?.Invoke(currentGold);
             Debug.Log("金幣已重置為 100");
+            ResetAllUpgrades();
         }
     }
 
