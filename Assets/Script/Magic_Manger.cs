@@ -67,7 +67,7 @@ public class Magic_Manager : MonoBehaviour
 
             if (!HealthSystem.Instance.UseMana(manaCost))
             {
-                Debug.Log("Mana insuffisant");
+                NotEnoughManaUI.Instance?.Show();
                 return;
             }
 
