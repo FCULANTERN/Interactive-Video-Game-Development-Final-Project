@@ -16205,8 +16205,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u79FB\u52D5\uFF1AWASD \n\u653B\u64CA\uFF1A\u6ED1\u9F20\u5DE6\u9375\n\u4F7F\u7528\u6CD5\u8853\uFF1AE
-    \u6216 Q \u9375"
+  m_text: "\u79FB\u52D5\uFF1AW A S D \n\u653B\u64CA\uFF1A\u6ED1\u9F20\u5DE6\u9375\n\u4F7F\u7528\u6CD5\u8853\uFF1AE\u3001Q\u3001R\u3001F
+    \u9375"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7f8d7bb9a1859c24d9f82fa82fe7ebff, type: 2}
   m_sharedMaterial: {fileID: 1326273821252669343, guid: 7f8d7bb9a1859c24d9f82fa82fe7ebff, type: 2}
