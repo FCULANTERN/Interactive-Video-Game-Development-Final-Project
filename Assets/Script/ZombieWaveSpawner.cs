@@ -368,6 +368,9 @@ public class ZombieWaveSpawner : MonoBehaviour
         if (startPanel != null)
             startPanel.SetActive(false);
 
+        if (AchievementManager.Instance != null)
+            AchievementManager.Instance.StartNewRun();
+
         StartNextWave();
     }
 }

@@ -32,6 +32,9 @@ public class PlayerHealth : MonoBehaviour
         if (HealthSystem.Instance != null)
             HealthSystem.Instance.Regenerate = false;
 
+        if (AchievementManager.Instance != null)
+            AchievementManager.Instance.RegisterPlayerDeath();
+
         gameObject.SetActive(false);
 
         if (gameOverCanvas != null)
