@@ -40,6 +40,14 @@ public class AchievementManager : MonoBehaviour
         SaveAchievements();
     }
 
+    // Resets the per-run consecutive streak. Call when a new game/run starts so
+    // the "in a row" achievement only counts waves survived within a single run.
+    public void StartNewRun()
+    {
+        ConsecutiveWaves = 0;
+        playerDiedThisWave = false;
+    }
+
     public void OnNewWave(int waveNumber)
     {
         if (waveNumber > 0)
@@ -82,7 +90,6 @@ public class AchievementManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("ACH_Jumps", TotalJumps);
         PlayerPrefs.SetInt("ACH_Waves", TotalWaves);
-        PlayerPrefs.SetInt("ACH_Consec", ConsecutiveWaves);
         PlayerPrefs.SetInt("ACH_Kills", TotalEnemiesKilled);
         for (int i = 0; i < IsUnlocked.Length; i++)
             PlayerPrefs.SetInt("ACH_Unlocked_" + i, IsUnlocked[i] ? 1 : 0);
@@ -93,7 +100,6 @@ public class AchievementManager : MonoBehaviour
     {
         TotalJumps = PlayerPrefs.GetInt("ACH_Jumps", 0);
         TotalWaves = PlayerPrefs.GetInt("ACH_Waves", 0);
-        ConsecutiveWaves = PlayerPrefs.GetInt("ACH_Consec", 0);
         TotalEnemiesKilled = PlayerPrefs.GetInt("ACH_Kills", 0);
         for (int i = 0; i < IsUnlocked.Length; i++)
             IsUnlocked[i] = PlayerPrefs.GetInt("ACH_Unlocked_" + i, 0) == 1;
