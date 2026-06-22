@@ -82,7 +82,7 @@ public class UpgradeButton : MonoBehaviour
 
         if (upgradeCostText != null)
         {
-            upgradeCostText.text  = $"花費: {cost}";
+            upgradeCostText.text  = $"Cost: {cost}";
             upgradeCostText.color = canAfford ? canAffordColor : cannotAffordColor;
         }
         if (upgradeButton != null) upgradeButton.interactable = canAfford;

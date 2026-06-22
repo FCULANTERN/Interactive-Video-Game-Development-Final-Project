@@ -93,7 +93,7 @@ public class UpgradeSystem : MonoBehaviour
                 {
                     type           = UpgradeType.AttackDamage,
                     name           = "Attack Damage",
-                    description    = "普攻傷害 +1 / 等級",
+                    description    = "Basic attack damage +1",
                     currentLevel   = 1, maxLevel = 10,
                     goldCostPerLevel = 20, valuePerLevel = 1f,
                     isLocked = false
@@ -101,8 +101,8 @@ public class UpgradeSystem : MonoBehaviour
                 new UpgradeData
                 {
                     type           = UpgradeType.MoveSpeed,
-                    name           = "冰凍",
-                    description    = "R 鍵冰凍時間 +0.5s / 等級",
+                    name           = "Freeze",
+                    description    = "R key freeze duration +0.5s",
                     currentLevel   = 1, maxLevel = 10,
                     goldCostPerLevel = 25, valuePerLevel = 5f,
                     isLocked = false
@@ -111,7 +111,7 @@ public class UpgradeSystem : MonoBehaviour
                 {
                     type           = UpgradeType.HPRegen,
                     name           = "HP Regen",
-                    description    = "HP 回復速度 +0.5 / 等級",
+                    description    = "HP regeneration rate +0.5",
                     currentLevel   = 1, maxLevel = 10,
                     goldCostPerLevel = 30, valuePerLevel = 0.5f,
                     isLocked = false
@@ -120,7 +120,7 @@ public class UpgradeSystem : MonoBehaviour
                 {
                     type           = UpgradeType.ManaRegen,
                     name           = "Mana Regen",
-                    description    = "Mana 回復速度 +1 / 等級",
+                    description    = "Mana regeneration rate +1",
                     currentLevel   = 1, maxLevel = 10,
                     goldCostPerLevel = 30, valuePerLevel = 1f,
                     isLocked = false
@@ -129,7 +129,7 @@ public class UpgradeSystem : MonoBehaviour
                 {
                     type           = UpgradeType.SkillProjectile,
                     name           = "Skill: Projectile",
-                    description    = "投擲技能傷害 +5 / 等級",
+                    description    = "Throwing skill damage +5",
                     currentLevel   = 1, maxLevel = 10,
                     goldCostPerLevel = 40, valuePerLevel = 5f,
                     isLocked = false
@@ -137,12 +137,11 @@ public class UpgradeSystem : MonoBehaviour
                 new UpgradeData
                 {
                     type           = UpgradeType.SkillSlash,
-                    name           = "Skill: Slash",
-                    description    = "Q 鍵技能傷害 +3 / 等級",
+                    name           = "Attack Damage",
+                    description    = "attack damage +3",
                     currentLevel   = 1, maxLevel = 10,
                     goldCostPerLevel = 40, valuePerLevel = 3f,
                     isLocked = false,
-                    lockedReason = "累積擊殺 20 個敵人後解鎖"
                 },
             };
         }

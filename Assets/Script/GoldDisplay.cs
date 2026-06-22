@@ -3,7 +3,7 @@ using TMPro;
 
 public class GoldDisplay : MonoBehaviour
 {
-    public string format = "金幣: {0}";
+    public string format = "Gold: {0}";
 
     private TextMeshProUGUI goldText;
 
