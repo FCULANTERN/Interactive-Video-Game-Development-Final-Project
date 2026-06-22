@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
     public InputActionReference moveAction;
     public InputActionReference jumpAction;
 
+    [HideInInspector] public bool rotationLocked = false;
+
     private CharacterController controller;
     private Vector3 velocity;
     private bool isGrounded;
@@ -71,7 +73,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 finalMove = horizontalMove * moveSpeed + new Vector3(0f, velocity.y, 0f);
         controller.Move(finalMove * Time.deltaTime);
 
-        RotateToMouse();
+        if (!rotationLocked)
+            RotateToMouse();
     }
 
     void RotateToMouse()

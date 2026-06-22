@@ -6,13 +6,7 @@ using System.Collections.Generic;
 public enum UpgradeType
 {
     AttackDamage    = 0,  // 普攻傷害
-    MoveSpeed       = 1,  // 移動速度
     HPRegen         = 2,  // HP 回復速度
-    ManaRegen       = 3,  // Mana 回復速度
-    SkillProjectile = 4,  // E 鍵技能傷害
-    SkillSlash      = 5,  // Q 鍵技能傷害
-    // 往後新增技能在此繼續加 ↓
-    // SkillFireball = 6,
 }
 
 public class UpgradeSystem : MonoBehaviour
@@ -100,48 +94,12 @@ public class UpgradeSystem : MonoBehaviour
                 },
                 new UpgradeData
                 {
-                    type           = UpgradeType.MoveSpeed,
-                    name           = "Freeze",
-                    description    = "R key freeze duration +0.5s",
-                    currentLevel   = 1, maxLevel = 10,
-                    goldCostPerLevel = 25, valuePerLevel = 5f,
-                    isLocked = false
-                },
-                new UpgradeData
-                {
                     type           = UpgradeType.HPRegen,
                     name           = "HP Regen",
                     description    = "HP regeneration rate +0.5",
                     currentLevel   = 1, maxLevel = 10,
                     goldCostPerLevel = 30, valuePerLevel = 0.5f,
                     isLocked = false
-                },
-                new UpgradeData
-                {
-                    type           = UpgradeType.ManaRegen,
-                    name           = "Mana Regen",
-                    description    = "Mana regeneration rate +1",
-                    currentLevel   = 1, maxLevel = 10,
-                    goldCostPerLevel = 30, valuePerLevel = 1f,
-                    isLocked = false
-                },
-                new UpgradeData
-                {
-                    type           = UpgradeType.SkillProjectile,
-                    name           = "Skill: Projectile",
-                    description    = "Throwing skill damage +5",
-                    currentLevel   = 1, maxLevel = 10,
-                    goldCostPerLevel = 40, valuePerLevel = 5f,
-                    isLocked = false
-                },
-                new UpgradeData
-                {
-                    type           = UpgradeType.SkillSlash,
-                    name           = "Attack Damage",
-                    description    = "attack damage +3",
-                    currentLevel   = 1, maxLevel = 10,
-                    goldCostPerLevel = 40, valuePerLevel = 3f,
-                    isLocked = false,
                 },
             };
         }

@@ -301,20 +301,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2e214b115ff714bbd617aeadb2da37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieWaveSpawner
-  zombiePrefab: {fileID: 6578268938732472550, guid: 54b95655e775e7d4bbe80a6b4d17bcb1, type: 3}
+  enemyEntries: []
   startEnemyCount: 5
   enemyIncreasePerWave: 2
   timeBetweenWaves: 5
   timeBetweenSpawns: 0.5
   autoStart: 1
+  healthScalePerWave: 0.15
+  damageScalePerWave: 0.1
+  speedScalePerWave: 0.03
+  maxSpeedMultiplier: 2
+  bossWaveInterval: 5
+  bossCount: 1
+  bossPrefab: {fileID: 0}
+  bossHealthMultiplier: 8
+  bossDamageMultiplier: 3
+  bossSizeMultiplier: 2
   useSpawnPoints: 1
   spawnPoints: []
+  minSpawnDistanceFromPlayer: 5
   areaCenter: {x: 0, y: 0, z: 0}
   areaSize: {x: 20, y: 0, z: 20}
   currentWave: 0
   aliveEnemyCount: 0
   isSpawningWave: 0
   isWaitingNextWave: 0
+  isBossWave: 0
+  maxWaves: 30
+  victoryPanel: {fileID: 0}
+  endlessMode: 0
+  startPanel: {fileID: 0}
+  waitForStart: 1
+  gameStarted: 0
 --- !u!4 &385408286
 Transform:
   m_ObjectHideFlags: 0
@@ -778,7 +796,6 @@ GameObject:
   - component: {fileID: 1755381074}
   - component: {fileID: 1755381073}
   - component: {fileID: 1755381076}
-  - component: {fileID: 1755381077}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -907,6 +924,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   rotateSpeed: 15
+  moveAction: {fileID: 0}
+  jumpAction: {fileID: 0}
+  rotationLocked: 0
 --- !u!143 &1755381074
 CharacterController:
   m_ObjectHideFlags: 0
@@ -944,30 +964,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43422f1e9c4fee64e88899fd71b82ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  maxHealth: 10
---- !u!114 &1755381077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1755381068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35070bc8b86105f4e81239f185479b53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Magic_Manager
-  castCooldown: 1
-  castKey: 19
-  spawnOffSet: {fileID: 1567831741}
-  target: {fileID: 0}
-  castRotationOffset: {x: 0, y: -90, z: 0}
-  projectileRotationOffset: {x: 1, y: 0, z: 0}
-  FXList_Cast: []
-  FXList_Projectile:
-  - {fileID: 3522067147260334173, guid: 5ee0cee073951e94a9b20cd5e0207d41, type: 3}
-  FXList_Hit:
-  - {fileID: 7963070265621199737, guid: d8b3feef50c293240b1ef25d86eb2da7, type: 3}
+  gameOverCanvas: {fileID: 0}
+  sceneLoader: {fileID: 0}
 --- !u!1001 &2044306944
 PrefabInstance:
   m_ObjectHideFlags: 0

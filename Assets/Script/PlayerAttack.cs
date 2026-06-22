@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class PlayerAttack : MonoBehaviour
 {
     private Animator animator;
+    private PlayerMovement playerMovement;
 
     public float attackCooldown = 0.6f;
     private float cooldownTimer = 0f;
@@ -20,9 +21,13 @@ public class PlayerAttack : MonoBehaviour
     public LayerMask enemyLayers = ~0;
     public string idleAnimation = "Idle";
 
+    [Header("Spin Attack")]
+    public float spinDuration = 0.3f;
+
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     void Update()
@@ -36,6 +41,7 @@ public class PlayerAttack : MonoBehaviour
             animator.Play(attackAnim);
             DealDamage();
             StartCoroutine(ReturnToIdle());
+            StartCoroutine(SpinAttack());
             cooldownTimer = attackCooldown;
         }
     }
@@ -55,6 +61,28 @@ public class PlayerAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(attackCooldown);
         animator.Play(idleAnimation);
+    }
+
+    IEnumerator SpinAttack()
+    {
+        if (playerMovement != null)
+            playerMovement.rotationLocked = true;
+
+        Quaternion startRotation = transform.rotation;
+        float elapsed = 0f;
+
+        while (elapsed < spinDuration)
+        {
+            elapsed += Time.deltaTime;
+            float angle = Mathf.Lerp(0f, 360f, elapsed / spinDuration);
+            transform.rotation = startRotation * Quaternion.Euler(0f, angle, 0f);
+            yield return null;
+        }
+
+        transform.rotation = startRotation;
+
+        if (playerMovement != null)
+            playerMovement.rotationLocked = false;
     }
 
     void DealDamage()

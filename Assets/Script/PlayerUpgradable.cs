@@ -8,7 +8,6 @@ public class PlayerUpgradable : MonoBehaviour
     // 基礎數值（升級前的原始值）
     private float baseMoveSpeed;
     private float baseHPRegen;
-    private float baseManaRegen;
 
     private PlayerAttack playerAttack;
     private PlayerMovement playerMovement;
@@ -21,7 +20,6 @@ public class PlayerUpgradable : MonoBehaviour
         // 儲存基礎值
         baseMoveSpeed  = playerMovement != null ? playerMovement.moveSpeed : 6f;
         baseHPRegen    = HealthSystem.Instance != null ? HealthSystem.Instance.hpRegenBonus : 0f;
-        baseManaRegen  = HealthSystem.Instance != null ? HealthSystem.Instance.manaRegenBonus : 0f;
 
         if (UpgradeSystem.Instance == null)
         {
@@ -48,23 +46,9 @@ public class PlayerUpgradable : MonoBehaviour
                     playerAttack.attackDamage = (int)value;
                 break;
 
-            case UpgradeType.MoveSpeed:
-                // 此槽位已改為 R 鍵技能升級，由技能腳本自己從 UpgradeSystem 取值
-                break;
-
             case UpgradeType.HPRegen:
                 if (HealthSystem.Instance != null)
                     HealthSystem.Instance.hpRegenBonus = value;
-                break;
-
-            case UpgradeType.ManaRegen:
-                if (HealthSystem.Instance != null)
-                    HealthSystem.Instance.manaRegenBonus = value;
-                break;
-
-            // 技能傷害由技能腳本自己從 UpgradeSystem 取值，這裡不需要處理
-            case UpgradeType.SkillProjectile:
-            case UpgradeType.SkillSlash:
                 break;
         }
     }

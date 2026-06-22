@@ -2,8 +2,6 @@
 // HealthSystem
 // HealthSystem.Instance.TakeDamage (float Damage);
 // HealthSystem.Instance.HealDamage (float Heal);
-// HealthSystem.Instance.UseMana (float Mana);
-// HealthSystem.Instance.RestoreMana (float Mana);
 // Attach to the Hero.
 //==============================================================
 
@@ -21,13 +19,8 @@ public class HealthSystem : MonoBehaviour
 	public float hitPoint = 100f;
 	public float maxHitPoint = 100f;
 
-	public Slider manaSlider;
-	public Text manaText;
-	public float manaPoint = 100f;
-	public float maxManaPoint = 100f;
-
 	//==============================================================
-	// Regenerate Health & Mana
+	// Regenerate Health
 	//==============================================================
 	public bool Regenerate = true;
 	public float regen = 0.1f;
@@ -36,7 +29,6 @@ public class HealthSystem : MonoBehaviour
 
 	// 升級系統加成（由 PlayerUpgradable 設定）
 	[HideInInspector] public float hpRegenBonus = 0f;
-	[HideInInspector] public float manaRegenBonus = 0f;
 
 	public bool GodMode;
 
@@ -72,24 +64,22 @@ public class HealthSystem : MonoBehaviour
 	}
 
 	//==============================================================
-	// Regenerate Health & Mana
+	// Regenerate Health
 	//==============================================================
 	private void Regen()
 	{
 		timeleft -= Time.deltaTime;
 
-		if (timeleft <= 0.0) // Interval ended - update health & mana and start new interval
+		if (timeleft <= 0.0) // Interval ended - update health and start new interval
 		{
 			// Debug mode
 			if (GodMode)
 			{
 				HealDamage(maxHitPoint);
-				RestoreMana(maxManaPoint);
 			}
 			else
 			{
 				HealDamage(regen + hpRegenBonus);
-				RestoreMana(regen + manaRegenBonus);
 			}
 
 			UpdateGraphics();
@@ -137,51 +127,11 @@ public class HealthSystem : MonoBehaviour
 	}
 
 	//==============================================================
-	// Mana Logic
-	//==============================================================
-	private void UpdateManaBar()
-	{
-		float ratio = manaPoint / maxManaPoint;
-		if (manaSlider != null)
-			manaSlider.value = ratio;
-		if (manaText != null)
-			manaText.text = manaPoint.ToString("0") + "/" + maxManaPoint.ToString("0");
-	}
-
-    public bool UseMana(float mana)
-    {
-        if (manaPoint < mana)
-            return false;
-
-        manaPoint -= mana;
-        manaPoint = Mathf.Clamp(manaPoint, 0, maxManaPoint);
-
-        UpdateGraphics();
-        return true;
-    }
-
-    public void RestoreMana(float Mana)
-	{
-		manaPoint += Mana;
-        manaPoint = Mathf.Clamp(manaPoint, 0, maxManaPoint);
-
-        UpdateGraphics();
-	}
-
-	public void SetMaxMana(float max)
-	{
-		maxManaPoint += (int)(maxManaPoint * max / 100);
-
-		UpdateGraphics();
-	}
-
-	//==============================================================
 	// Update all Bars UI graphics
 	//==============================================================
 	private void UpdateGraphics()
 	{
 		UpdateHealthBar();
-		UpdateManaBar();
 	}
 
 	//==============================================================

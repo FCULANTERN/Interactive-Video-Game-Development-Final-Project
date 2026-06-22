@@ -2,10 +2,7 @@ using UnityEngine;
 
 public class OrbPickup : MonoBehaviour
 {
-    public enum OrbType { Health, Mana }
-
     [Header("Orb")]
-    public OrbType type = OrbType.Health;
     public float amount = 20f;
 
     [Header("Pickup FX")]
@@ -17,12 +14,7 @@ public class OrbPickup : MonoBehaviour
             return;
 
         if (HealthSystem.Instance != null)
-        {
-            if (type == OrbType.Health)
-                HealthSystem.Instance.HealDamage(amount);
-            else
-                HealthSystem.Instance.RestoreMana(amount);
-        }
+            HealthSystem.Instance.HealDamage(amount);
 
         if (pickupEffectPrefab != null)
         {

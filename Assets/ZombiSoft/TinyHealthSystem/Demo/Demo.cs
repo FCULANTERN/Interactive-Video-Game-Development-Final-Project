@@ -17,20 +17,8 @@ public class Demo : MonoBehaviour
     {
         HealthSystem.Instance.HealDamage(10f); // Heal damage 10 points
     }
-    public void Button3()
-    {
-        HealthSystem.Instance.UseMana(10f); // Decrease mana 10 points
-    }
-    public void Button4()
-    {
-        HealthSystem.Instance.RestoreMana(10f); // Increase mana 10 points
-    }
     public void Button5()
     {
         HealthSystem.Instance.SetMaxHealth(10f); // Add 10 % to max health
-    }
-    public void Button6()
-    {
-        HealthSystem.Instance.SetMaxMana(10f); // Add 10 % to max mana
     }
 }

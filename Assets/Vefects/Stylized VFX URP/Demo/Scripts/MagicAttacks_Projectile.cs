@@ -1,6 +1,5 @@
 using UnityEngine.VFX;
 using UnityEngine;
-using System.Collections.Generic;
 
 public class MagicAttacks_Projectile : MonoBehaviour
 {
@@ -11,20 +10,6 @@ public class MagicAttacks_Projectile : MonoBehaviour
 
     // Sweep radius for continuous hit detection (prevents passing through enemies at close range / high speed)
     public float hitRadius = 0.6f;
-
-    // 從哪個升級類型取得傷害（由 Magic_Manager 設定）
-    [HideInInspector] public UpgradeType skillUpgradeType = UpgradeType.SkillProjectile;
-    [HideInInspector] public bool useUpgradeSystem = false;
-
-    // Freeze effect (set by Magic_Manager, only enabled for the ice spell)
-    [HideInInspector] public bool applyFreeze = false;
-    [HideInInspector] public float freezeDuration = 2f;
-
-    // Area-of-effect radius (0 = single target, >0 = affects all enemies in range on hit)
-    [HideInInspector] public float areaRadius = 0f;
-
-    // Damage multiplier applied on top of the base/upgrade damage (set by Magic_Manager)
-    [HideInInspector] public float damageMultiplier = 1f;
 
     VisualEffect FX_Projectile;
     VisualEffect FX_ProjectileTail;
@@ -37,13 +22,6 @@ public class MagicAttacks_Projectile : MonoBehaviour
         FX_Projectile = gameObject.transform.GetChild(0).GetComponent<VisualEffect>();
         FX_ProjectileTail = gameObject.transform.GetChild(1).GetComponent<VisualEffect>();
         SFX_Projectile = gameObject.GetComponent<AudioSource>();
-
-        // 從升級系統取得傷害
-        if (useUpgradeSystem && UpgradeSystem.Instance != null)
-            damage = UpgradeSystem.Instance.GetSkillDamage(skillUpgradeType);
-
-        if (damageMultiplier != 1f)
-            damage = Mathf.Max(1, Mathf.RoundToInt(damage * damageMultiplier));
 
         Destroy(gameObject, 5f);
     }
@@ -96,29 +74,15 @@ public class MagicAttacks_Projectile : MonoBehaviour
         Impact(col, transform.position);
     }
 
-    // Resolve a hit: deal damage / freeze (single target or area), spawn the hit FX, then despawn.
+    // Resolve a hit: deal damage, spawn the hit FX, then despawn.
     void Impact(Collider col, Vector3 point)
     {
         if (hasImpacted) return;
         hasImpacted = true;
 
-        if (areaRadius > 0f)
-        {
-            HashSet<Damageable> affected = new HashSet<Damageable>();
-            foreach (Collider c in Physics.OverlapSphere(point, areaRadius))
-            {
-                Damageable d = c.GetComponentInParent<Damageable>();
-                if (d == null || affected.Contains(d)) continue;
-                affected.Add(d);
-                ApplyHit(d);
-            }
-        }
-        else
-        {
-            Damageable d = col.GetComponentInParent<Damageable>();
-            if (d != null)
-                ApplyHit(d);
-        }
+        Damageable d = col.GetComponentInParent<Damageable>();
+        if (d != null)
+            d.TakeDamage(damage);
 
         if (FX_Hit != null)
         {
@@ -136,13 +100,5 @@ public class MagicAttacks_Projectile : MonoBehaviour
             SFX_Projectile.Stop();
 
         Destroy(gameObject, 0.05f);
-    }
-
-    // Apply damage (and freeze) to a single enemy
-    void ApplyHit(Damageable d)
-    {
-        d.TakeDamage(damage);
-        if (applyFreeze)
-            FrozenEffect.Apply(d.gameObject, freezeDuration);
     }
 }
